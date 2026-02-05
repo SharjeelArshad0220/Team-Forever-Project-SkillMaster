@@ -438,29 +438,29 @@ Complete markdown lesson following the template above, ready to save as .md file
 ## NOW GENERATE THE LESSON
 
 **Input Day Curriculum:**
-[Day 1: JavaScript Basics & Setup
-بنیادی باتیں اور سیٹ اپ
-"A journey of a thousand miles begins with a single console.log()"
+[Day 2: Operators & Conditionals
+آپریٹرز اور شرائط
 🎯 Today's Goals
-Set up VS Code with extensions
-Understand variables (let, const, var)
-Write first 10 lines of JavaScript
-Use console.log() to debug
+Master arithmetic and comparison operators
+Write if-else statements confidently
+Use logical operators (&&, ||, !)
+Understand truthy and falsy values
 📚 Core Concepts
-Variables: Think of variables as dabba (containers). You can put data inside and label it with a name.
-Data Types: String (text), Number, Boolean (true/false) — like different types of things in your dabba
-console.log(): Your debugging best friend — like shouting to see what's in your code
+Comparison Operators: === (strict equal), !==, >, <, >=, <= — always use === instead of ==
+if-else: Like making decisions: agar (if) yeh hai to yeh karo, warna (else) wo karo
+Logical Operators: && (aur/and), || (ya/or), ! (nahi/not)
 💻 Hands-On Practice
-Create variables for: your name, age, favorite food, and whether you like chai. Log them all using template literals.
+Write conditions to check: if number is even/odd, if someone can vote (age >= 18), if it's a weekend.
 🚀 Challenge Project
-Project: Personal Info Card
-Build a simple JavaScript program that stores and displays your information.
+Project: Biryani Quality Checker
+Create a program that rates biryani based on multiple factors.
 Requirements:
-Store name, age, university, and favorite programming language
-Use template literals to create formatted output
-Calculate and display how many months until graduation
-Display everything in console in readable format
-Bonus Challenge: Add emojis and make it colorful using console CSS styling
+Check if rice is basmati (boolean)
+Check spice level (1-10 scale)
+Check if it has aloo (boolean — controversial!)
+Give final rating: Excellent, Good, Average, or Poor
+Use nested if-else and logical operators
+Bonus Challenge: Add special messages for perfect biryani vs biryani with aloo
 ✅ Daily Progress
 Quiz Score: _____/5 | Challenge: ☐ Complete | Commits: _____ | Hours: _____
 ]
