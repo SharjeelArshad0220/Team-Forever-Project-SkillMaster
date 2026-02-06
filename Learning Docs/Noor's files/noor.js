@@ -24,3 +24,11 @@ if (age >= 18) {
 } else {
   console.log("Status: Minor");
 }
+
+
+// ================
+// leader overview :
+// noor tumhara kam mujhy pasand aya infact boht acha ha i appreciate your silent skills that you dont show off but you have them excellent🐱‍🏍🧠👀.
+// Important Note:
+// But aik galti ha tumny global Variable ka naam name rakha ha yeh chal toh rha ha but problem create krega
+// ================
