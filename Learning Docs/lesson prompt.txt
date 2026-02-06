@@ -437,32 +437,28 @@ Complete markdown lesson following the template above, ready to save as .md file
 
 ## NOW GENERATE THE LESSON
 
-**Input Day Curriculum:**
-[Day 2: Operators & Conditionals
-آپریٹرز اور شرائط
+Day 3: Loops & Iteration
+لوپس اور دہرانا
 🎯 Today's Goals
-Master arithmetic and comparison operators
-Write if-else statements confidently
-Use logical operators (&&, ||, !)
-Understand truthy and falsy values
+Understand for loops completely
+Use while and do-while loops
+Know when to use break and continue
+Avoid infinite loops
 📚 Core Concepts
-Comparison Operators: === (strict equal), !==, >, <, >=, <= — always use === instead of ==
-if-else: Like making decisions: agar (if) yeh hai to yeh karo, warna (else) wo karo
-Logical Operators: && (aur/and), || (ya/or), ! (nahi/not)
+for loop: Repeat code a specific number of times — like saying Bismillah 100 times
+while loop: Keep going until condition is false — like waiting for your turn in queue
+break & continue: break exits the loop, continue skips to next iteration
 💻 Hands-On Practice
-Write conditions to check: if number is even/odd, if someone can vote (age >= 18), if it's a weekend.
+Loop from 1 to 100, print only even numbers. Loop backwards from 10 to 1. Create multiplication table.
 🚀 Challenge Project
-Project: Biryani Quality Checker
-Create a program that rates biryani based on multiple factors.
+Project: Cricket Score Counter
+Simulate a cricket innings and calculate total runs.
 Requirements:
-Check if rice is basmati (boolean)
-Check spice level (1-10 scale)
-Check if it has aloo (boolean — controversial!)
-Give final rating: Excellent, Good, Average, or Poor
-Use nested if-else and logical operators
-Bonus Challenge: Add special messages for perfect biryani vs biryani with aloo
+Loop through 6 overs (each over has 6 balls)
+Randomly generate runs for each ball (0-6)
+Track boundaries (4s and 6s)
+Calculate total runs, strike rate
+Stop if team gets all out (simulate with random wickets)
+Bonus Challenge: Add commentary for each ball (e.g., 'SIX! What a shot!')
 ✅ Daily Progress
 Quiz Score: _____/5 | Challenge: ☐ Complete | Commits: _____ | Hours: _____
-]
-
-**Generate:** Complete markdown lesson following ALL specifications above. Make it engaging, culturally relevant, and designed for true understanding - not just code copying.
