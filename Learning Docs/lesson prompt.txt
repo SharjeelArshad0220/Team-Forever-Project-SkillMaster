@@ -437,32 +437,28 @@ Complete markdown lesson following the template above, ready to save as .md file
 
 ## NOW GENERATE THE LESSON
 
-**Input Day Curriculum:**
-[Day 1: JavaScript Basics & Setup
-بنیادی باتیں اور سیٹ اپ
-"A journey of a thousand miles begins with a single console.log()"
+Day 3: Loops & Iteration
+لوپس اور دہرانا
 🎯 Today's Goals
-Set up VS Code with extensions
-Understand variables (let, const, var)
-Write first 10 lines of JavaScript
-Use console.log() to debug
+Understand for loops completely
+Use while and do-while loops
+Know when to use break and continue
+Avoid infinite loops
 📚 Core Concepts
-Variables: Think of variables as dabba (containers). You can put data inside and label it with a name.
-Data Types: String (text), Number, Boolean (true/false) — like different types of things in your dabba
-console.log(): Your debugging best friend — like shouting to see what's in your code
+for loop: Repeat code a specific number of times — like saying Bismillah 100 times
+while loop: Keep going until condition is false — like waiting for your turn in queue
+break & continue: break exits the loop, continue skips to next iteration
 💻 Hands-On Practice
-Create variables for: your name, age, favorite food, and whether you like chai. Log them all using template literals.
+Loop from 1 to 100, print only even numbers. Loop backwards from 10 to 1. Create multiplication table.
 🚀 Challenge Project
-Project: Personal Info Card
-Build a simple JavaScript program that stores and displays your information.
+Project: Cricket Score Counter
+Simulate a cricket innings and calculate total runs.
 Requirements:
-Store name, age, university, and favorite programming language
-Use template literals to create formatted output
-Calculate and display how many months until graduation
-Display everything in console in readable format
-Bonus Challenge: Add emojis and make it colorful using console CSS styling
+Loop through 6 overs (each over has 6 balls)
+Randomly generate runs for each ball (0-6)
+Track boundaries (4s and 6s)
+Calculate total runs, strike rate
+Stop if team gets all out (simulate with random wickets)
+Bonus Challenge: Add commentary for each ball (e.g., 'SIX! What a shot!')
 ✅ Daily Progress
 Quiz Score: _____/5 | Challenge: ☐ Complete | Commits: _____ | Hours: _____
-]
-
-**Generate:** Complete markdown lesson following ALL specifications above. Make it engaging, culturally relevant, and designed for true understanding - not just code copying.
