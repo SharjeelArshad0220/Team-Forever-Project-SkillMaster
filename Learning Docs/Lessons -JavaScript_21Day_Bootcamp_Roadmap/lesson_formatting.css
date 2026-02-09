@@ -1,0 +1,51 @@
+/* custom-style.css - Example 1: Clean & Professional */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 210mm; /* Controls text width on the page */
+    margin: 0 auto;
+}
+h1, h2, h3 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 0.3em;
+}
+code {
+    background-color: #f8f9fa;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+    border: 1px solid #eaecf0;
+}
+pre {
+    background-color: #f8f9fa;
+    padding: 1em;
+    border-radius: 5px;
+    border-left: 4px solid #3498db;
+    overflow-x: auto;
+}
+a {
+    color: #2980b9;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+/* custom-style.css - Example 2: Dark Code Blocks */
+pre {
+    background-color: #2d2d2d;
+    color: #f8f8f2;
+    padding: 1em;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+pre code {
+    background-color: transparent; /* Inherits from pre */
+    padding: 0;
+    border: none;
+    color: inherit;
+}
+/* Style specific syntax tokens if needed */
+.hljs-keyword { color: #ff79c6; }
+.hljs-string { color: #f1fa8c; }
+.hljs-comment { color: #6272a4; }
