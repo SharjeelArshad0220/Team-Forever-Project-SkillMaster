@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Day_04_Functions_Scope_Lesson.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/*
+
+github.com style (c) Vasily Polovnyov <vast@whiteants.net>
+
+*/
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+  color: #333;
+  background: #f8f8f8;
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #998;
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #333;
+  font-weight: bold;
+}
+
+.hljs-number,
+.hljs-literal,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag .hljs-attr {
+  color: #008080;
+}
+
+.hljs-string,
+.hljs-doctag {
+  color: #d14;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-selector-id {
+  color: #900;
+  font-weight: bold;
+}
+
+.hljs-subst {
+  font-weight: normal;
+}
+
+.hljs-type,
+.hljs-class .hljs-title {
+  color: #458;
+  font-weight: bold;
+}
+
+.hljs-tag,
+.hljs-name,
+.hljs-attribute {
+  color: #000080;
+  font-weight: normal;
+}
+
+.hljs-regexp,
+.hljs-link {
+  color: #009926;
+}
+
+.hljs-symbol,
+.hljs-bullet {
+  color: #990073;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: #0086b3;
+}
+
+.hljs-meta {
+  color: #999;
+  font-weight: bold;
+}
+
+.hljs-deletion {
+  background: #fdd;
+}
+
+.hljs-addition {
+  background: #dfd;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+</style>
+<link rel="stylesheet" href="file:///c%3A/Users/MIAN%20G/Desktop/study/college/FYP/Learning%20Docs/Lessons%20-JavaScript_21Day_Bootcamp_Roadmap/lesson_formatting.css" type="text/css">
+<script src="https://unpkg.com/mermaid@10.3.1/dist/mermaid.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="day-4-functions--scope">Day 4: Functions &amp; Scope</h1>
+<h2 id="%D9%81%D9%86%DA%A9%D8%B4%D9%86%D8%B2-%D8%A7%D9%88%D8%B1-%D8%B3%DA%A9%D9%88%D9%BE">فنکشنز اور سکوپ</h2>
+<blockquote>
+<p><strong>Quote of the Day:</strong> <em>&quot;Functions are the building blocks of programs. They're like recipes - write once, use many times.&quot;</em> - Douglas Crockford</p>
+<p><em>&quot;فنکشنز پروگرامز کی بنیاد ہیں۔ یہ ریسیپیوں کی طرح ہیں - ایک بار لکھو، بار بار استعمال کرو۔&quot;</em></p>
+</blockquote>
+<hr>
+<h2 id="%F0%9F%93%8B-todays-learning-goals-%D8%A2%D8%AC-%DA%A9%DB%92-%D8%A7%DB%81%D8%AF%D8%A7%D9%81">📋 Today's Learning Goals (آج کے اہداف)</h2>
+<p>By the end of today, you will:</p>
+<ul>
+<li><input type="checkbox" id="checkbox0"><label for="checkbox0">Declare and invoke (call) functions confidently</label></li>
+<li><input type="checkbox" id="checkbox1"><label for="checkbox1">Understand the difference between parameters and arguments</label></li>
+<li><input type="checkbox" id="checkbox2"><label for="checkbox2">Use return statements to get values back from functions</label></li>
+<li><input type="checkbox" id="checkbox3"><label for="checkbox3">Understand scope (where variables are accessible)</label></li>
+<li><input type="checkbox" id="checkbox4"><label for="checkbox4">Build a Utility Functions Library with reusable code</label></li>
+</ul>
+<p><strong>Time Breakdown (کل وقت: 150 منٹ)</strong></p>
+<ul>
+<li>🕐 7:00-7:05 PM (5min): Standup - Share your Cricket Counter scores!</li>
+<li>🕐 7:05-8:05 PM (60min): Understanding functions (3× Pomodoro)</li>
+<li>🕐 8:05-8:50 PM (45min): Practice creating utility functions</li>
+<li>🕐 8:50-9:25 PM (35min): Build your Functions Library</li>
+<li>🕐 9:25-9:30 PM (5min): Quiz &amp; reflection</li>
+</ul>
+<hr>
+<h2 id="%F0%9F%8E%AF-what-were-building-today">🎯 What We're Building Today</h2>
+<p>Today you'll create a <strong>Utility Functions Library</strong> - a collection of reusable helper functions like currency converter, discount calculator, phone formatter, and email validator!</p>
+<p><strong>Why This Matters for Your Career:</strong>
+Every professional codebase uses functions extensively:</p>
+<ul>
+<li><strong>Daraz:</strong> <code>calculateShippingCost()</code>, <code>applyDiscountCode()</code>, <code>formatPrice()</code></li>
+<li><strong>Careem:</strong> <code>calculateFare()</code>, <code>estimateArrivalTime()</code>, <code>validatePhoneNumber()</code></li>
+<li><strong>JazzCash:</strong> <code>convertBalance()</code>, <code>checkTransactionLimit()</code>, <code>formatAccountNumber()</code></li>
+</ul>
+<p>Functions make code reusable, organized, and easier to fix!</p>
+<hr>
+<h2 id="%F0%9F%A7%A0-%D8%B3%D9%85%D8%AC%DA%BE%D9%86%D8%A7-understanding-why-functions-exist">🧠 سمجھنا (Understanding): Why Functions Exist</h2>
+<h3 id="the-real-world-analogy">The Real-World Analogy</h3>
+<p><strong>Scenario: Making Biryani</strong></p>
+<p>Imagine you're teaching someone to make biryani. You could:</p>
+<p><strong>Without Functions (repeating everything):</strong></p>
+<pre class="hljs"><code><div>To make chicken biryani:
+1. Boil rice with salt and oil
+2. Fry onions until golden
+3. Mix spices: garam masala, red chili, turmeric
+4. Cook chicken with spices
+5. Layer rice and chicken
+6. Cook on dum for 30 minutes
+
+To make mutton biryani:
+1. Boil rice with salt and oil        (SAME AS ABOVE!)
+2. Fry onions until golden             (SAME AS ABOVE!)
+3. Mix spices: garam masala, red chili, turmeric  (SAME!)
+4. Cook mutton with spices
+5. Layer rice and mutton
+6. Cook on dum for 30 minutes
+</div></code></pre>
+<p><strong>With Functions (reusable recipes):</strong></p>
+<pre class="hljs"><code><div>Function: prepareRice()
+Function: fryOnions()
+Function: mixSpices()
+Function: cookOnDum()
+
+To make chicken biryani:
+- prepareRice()
+- fryOnions()
+- mixSpices()
+- cookMeat(chicken)
+- layer()
+- cookOnDum()
+
+To make mutton biryani:
+- prepareRice()        (REUSE!)
+- fryOnions()          (REUSE!)
+- mixSpices()          (REUSE!)
+- cookMeat(mutton)
+- layer()
+- cookOnDum()          (REUSE!)
+</div></code></pre>
+<p><strong>This is exactly what functions do in programming!</strong></p>
+<h3 id="daily-life-examples">Daily Life Examples</h3>
+<ol>
+<li>
+<p><strong>Calculator App:</strong></p>
+<pre class="hljs"><code><div>function add(a, b) - جمع کرنا
+function subtract(a, b) - منفی کرنا
+function multiply(a, b) - ضرب کرنا
+function divide(a, b) - تقسیم کرنا
+</div></code></pre>
+</li>
+<li>
+<p><strong>ATM Machine:</strong></p>
+<pre class="hljs"><code><div>function checkBalance()
+function withdraw(amount)
+function deposit(amount)
+function printReceipt()
+</div></code></pre>
+</li>
+<li>
+<p><strong>Phone Contacts:</strong></p>
+<pre class="hljs"><code><div>function saveContact(name, number)
+function searchContact(name)
+function deleteContact(name)
+function formatNumber(digits)
+</div></code></pre>
+</li>
+</ol>
+<h3 id="why-does-this-matter">Why Does This Matter?</h3>
+<p><strong>Without functions:</strong></p>
+<ul>
+<li>Copy-paste same code everywhere</li>
+<li>Fix one bug? Fix it 100 times!</li>
+<li>Hard to read and maintain</li>
+<li>Messy, confusing code</li>
+</ul>
+<p><strong>With functions:</strong></p>
+<ul>
+<li>Write once, use anywhere</li>
+<li>Fix bug once, fixed everywhere!</li>
+<li>Clean, organized code</li>
+<li>Easy to understand and update</li>
+</ul>
+<h3 id="the-mental-model">The Mental Model</h3>
+<p>Think of a function like a <strong>vending machine</strong>:</p>
+<pre class="hljs"><code><div>INPUT (پیسے) → MACHINE (process) → OUTPUT (drink)
+    ↓                ↓                    ↓
+Arguments      Function Body         Return Value
+</div></code></pre>
+<p>You put something IN, machine does its job, you get something OUT!</p>
+<hr>
+<h2 id="%F0%9F%93%9A-building-block-1-function-declaration-%D9%81%D9%86%DA%A9%D8%B4%D9%86-%D8%A8%D9%86%D8%A7%D9%86%D8%A7">📚 Building Block #1: Function Declaration (فنکشن بنانا)</h2>
+<h3 id="what-is-a-function-%DA%A9%DB%8C%D8%A7-%DB%81%DB%92%D8%9F">What is a Function? (کیا ہے؟)</h3>
+<p><strong>Urdu Analogy:</strong> Think of a function like a <strong>dabbawala</strong> (ڈبہ والا) - lunch box delivery person.</p>
+<pre class="hljs"><code><div>You give: lunch box (input)
+Dabbawala: delivers it (process)
+You get: delivered lunch box (output)
+</div></code></pre>
+<p>In JavaScript:</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">deliverLunch</span>(<span class="hljs-params">lunchBox</span>) </span>{
+    <span class="hljs-comment">// Process: take lunch, deliver it</span>
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"Lunch delivered to office!"</span>;
+}
+</div></code></pre>
+<h3 id="the-anatomy-of-a-function">The Anatomy of a Function</h3>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">functionName</span>(<span class="hljs-params">parameter1, parameter2</span>) </span>{
+    <span class="hljs-comment">// Function body - code to execute</span>
+    <span class="hljs-comment">// Do something with parameters</span>
+    <span class="hljs-keyword">return</span> result;  <span class="hljs-comment">// Send back a value</span>
+}
+</div></code></pre>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>What It Does</th>
+<th>Example</th>
+<th>Urdu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>function</code></td>
+<td>Keyword to create function</td>
+<td><code>function</code></td>
+<td>فنکشن کی شروعات</td>
+</tr>
+<tr>
+<td>Name</td>
+<td>What you call it</td>
+<td><code>greetUser</code></td>
+<td>نام</td>
+</tr>
+<tr>
+<td>Parameters</td>
+<td>Inputs (placeholders)</td>
+<td><code>(name, age)</code></td>
+<td>ان پٹ</td>
+</tr>
+<tr>
+<td>Body</td>
+<td>Code that runs</td>
+<td><code>{ ... }</code></td>
+<td>کام</td>
+</tr>
+<tr>
+<td>Return</td>
+<td>Output value</td>
+<td><code>return &quot;Hello&quot;</code></td>
+<td>آؤٹ پٹ</td>
+</tr>
+</tbody>
+</table>
+<h3 id="how-it-works---step-by-step">How It Works - Step by Step</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// THINKING: Create a simple greeting function</span>
+
+<span class="hljs-comment">// Step 1: DECLARE (بنانا) - Define the function</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sayHello</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"السلام علیکم"</span>);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Hello!"</span>);
+}
+
+<span class="hljs-comment">// Step 2: INVOKE/CALL (چلانا) - Use the function</span>
+sayHello();  <span class="hljs-comment">// This runs the function!</span>
+
+<span class="hljs-comment">// Output:</span>
+<span class="hljs-comment">// السلام علیکم</span>
+<span class="hljs-comment">// Hello!</span>
+</div></code></pre>
+<p><strong>The pattern:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment">// DECLARE - this just creates it, doesn't run it</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">doSomething</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// code here</span>
+}
+
+<span class="hljs-comment">// INVOKE - this actually runs it</span>
+doSomething();  <span class="hljs-comment">// Add () to call it!</span>
+</div></code></pre>
+<h3 id="your-first-example">Your First Example</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// THINKING: Function to greet in Urdu and English</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greetInUrdu</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"خوش آمدید!"</span>);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Welcome!"</span>);
+}
+
+<span class="hljs-comment">// Call it!</span>
+greetInUrdu();
+
+<span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Create a function called introduceSelf</span>
+<span class="hljs-comment">// It should print your name and city</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">introduceSelf</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"My name is _______"</span>);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"I live in _______"</span>);
+}
+
+<span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Call your function</span>
+_____________();
+</div></code></pre>
+<h3 id="multiple-calls---reusability">Multiple Calls - Reusability!</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// THINKING: Call the same function multiple times</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">ringBell</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"🔔 Ding dong!"</span>);
+}
+
+<span class="hljs-comment">// Ring the bell 3 times</span>
+ringBell();  <span class="hljs-comment">// 🔔 Ding dong!</span>
+ringBell();  <span class="hljs-comment">// 🔔 Ding dong!</span>
+ringBell();  <span class="hljs-comment">// 🔔 Ding dong!</span>
+
+<span class="hljs-comment">// See the power? Write once, call many times!</span>
+</div></code></pre>
+<h3 id="common-mistakes">Common Mistakes</h3>
+<p>❌ <strong>Wrong:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sayHello</span> </span>{  <span class="hljs-comment">// Missing parentheses!</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Hello"</span>);
+}
+</div></code></pre>
+<p>✅ <strong>Right:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sayHello</span>(<span class="hljs-params"></span>) </span>{  <span class="hljs-comment">// Always need ()</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Hello"</span>);
+}
+</div></code></pre>
+<hr>
+<p>❌ <strong>Wrong:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sayHello</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Hello"</span>);
+}
+
+sayHello;  <span class="hljs-comment">// Forgot () - doesn't call it!</span>
+</div></code></pre>
+<p>✅ <strong>Right:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sayHello</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Hello"</span>);
+}
+
+sayHello();  <span class="hljs-comment">// Need () to actually call it</span>
+</div></code></pre>
+<h3 id="check-your-understanding">Check Your Understanding</h3>
+<ul>
+<li><input type="checkbox" id="checkbox5"><label for="checkbox5">What keyword creates a function?</label></li>
+<li><input type="checkbox" id="checkbox6"><label for="checkbox6">How do you call/invoke a function?</label></li>
+<li><input type="checkbox" id="checkbox7"><label for="checkbox7">Can you call a function multiple times?</label></li>
+<li><input type="checkbox" id="checkbox8"><label for="checkbox8">What's inside the curly braces </label><code>{ }</code>?</li>
+</ul>
+<hr>
+<h2 id="%F0%9F%93%9A-building-block-2-parameters--arguments">📚 Building Block #2: Parameters &amp; Arguments</h2>
+<h3 id="whats-the-difference-%D9%81%D8%B1%D9%82-%DA%A9%DB%8C%D8%A7-%DB%81%DB%92%D8%9F">What's the Difference? (فرق کیا ہے؟)</h3>
+<p><strong>Urdu Analogy:</strong> Think of ordering food at a restaurant:</p>
+<p><strong>Menu (Parameters - خالی جگہیں):</strong></p>
+<pre class="hljs"><code><div>Biryani (what type?)
+Drink (which one?)
+Spice Level (how spicy?)
+</div></code></pre>
+<p><strong>Your Order (Arguments - اصل چیزیں):</strong></p>
+<pre class="hljs"><code><div>Biryani (chicken)
+Drink (Coke)
+Spice Level (medium)
+</div></code></pre>
+<p><strong>Parameters</strong> = Placeholders in function definition
+<strong>Arguments</strong> = Actual values when calling function</p>
+<h3 id="how-it-works">How It Works</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// THINKING: Function with parameters</span>
+
+<span class="hljs-comment">// PARAMETERS - placeholders (خالی ڈبے)</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greetUser</span>(<span class="hljs-params">userName, userCity</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Hello "</span> + userName);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Welcome from "</span> + userCity);
+}
+
+<span class="hljs-comment">// ARGUMENTS - actual values (بھرے ہوئے ڈبے)</span>
+greetUser(<span class="hljs-string">"Hassan"</span>, <span class="hljs-string">"Lahore"</span>);
+<span class="hljs-comment">// Output:</span>
+<span class="hljs-comment">// Hello Hassan</span>
+<span class="hljs-comment">// Welcome from Lahore</span>
+
+greetUser(<span class="hljs-string">"Fatima"</span>, <span class="hljs-string">"Karachi"</span>);
+<span class="hljs-comment">// Output:</span>
+<span class="hljs-comment">// Hello Fatima</span>
+<span class="hljs-comment">// Welcome from Karachi</span>
+</div></code></pre>
+<h3 id="multiple-parameters">Multiple Parameters</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// THINKING: Calculate area of rectangle</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calculateArea</span>(<span class="hljs-params">width, height</span>) </span>{
+    <span class="hljs-keyword">const</span> area = width * height;
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Area:"</span>, area);
+}
+
+<span class="hljs-comment">// Different rectangles</span>
+calculateArea(<span class="hljs-number">5</span>, <span class="hljs-number">10</span>);   <span class="hljs-comment">// Area: 50</span>
+calculateArea(<span class="hljs-number">7</span>, <span class="hljs-number">3</span>);    <span class="hljs-comment">// Area: 21</span>
+calculateArea(<span class="hljs-number">20</span>, <span class="hljs-number">15</span>);  <span class="hljs-comment">// Area: 300</span>
+</div></code></pre>
+<h3 id="parameter-order-matters">Parameter Order Matters!</h3>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">introducePerson</span>(<span class="hljs-params">name, age, city</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(name + <span class="hljs-string">" is "</span> + age + <span class="hljs-string">" years old"</span>);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Lives in "</span> + city);
+}
+
+<span class="hljs-comment">// Correct order</span>
+introducePerson(<span class="hljs-string">"Ali"</span>, <span class="hljs-number">20</span>, <span class="hljs-string">"Lahore"</span>);
+<span class="hljs-comment">// Ali is 20 years old</span>
+<span class="hljs-comment">// Lives in Lahore</span>
+
+<span class="hljs-comment">// Wrong order - confusing!</span>
+introducePerson(<span class="hljs-number">20</span>, <span class="hljs-string">"Lahore"</span>, <span class="hljs-string">"Ali"</span>);
+<span class="hljs-comment">// 20 is Lahore years old  (❌ Nonsense!)</span>
+<span class="hljs-comment">// Lives in Ali</span>
+</div></code></pre>
+<h3 id="your-first-example">Your First Example</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Create function to introduce student</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">introduceStudent</span>(<span class="hljs-params">name, rollNo, program</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Student Name: "</span> + _______);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Roll Number: "</span> + _______);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Program: "</span> + _______);
+}
+
+<span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Call with your details</span>
+introduceStudent(_______, _______, _______);
+
+<span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Call with friend's details</span>
+introduceStudent(_______, _______, _______);
+</div></code></pre>
+<h3 id="default-parameters">Default Parameters</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// THINKING: What if user doesn't provide a value?</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greetUser</span>(<span class="hljs-params">name = <span class="hljs-string">"Guest"</span></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Welcome, "</span> + name + <span class="hljs-string">"!"</span>);
+}
+
+greetUser(<span class="hljs-string">"Hassan"</span>);  <span class="hljs-comment">// Welcome, Hassan!</span>
+greetUser();          <span class="hljs-comment">// Welcome, Guest! (uses default)</span>
+</div></code></pre>
+<h3 id="common-mistakes">Common Mistakes</h3>
+<p>❌ <strong>Wrong:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params">name</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Hello "</span> + userName);  <span class="hljs-comment">// Wrong variable!</span>
+}
+
+greet(<span class="hljs-string">"Ali"</span>);
+</div></code></pre>
+<p>✅ <strong>Right:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params">name</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Hello "</span> + name);  <span class="hljs-comment">// Use parameter name</span>
+}
+
+greet(<span class="hljs-string">"Ali"</span>);
+</div></code></pre>
+<hr>
+<p>❌ <strong>Wrong:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">a, b</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(a + b);
+}
+
+add(<span class="hljs-number">5</span>);  <span class="hljs-comment">// b is undefined!</span>
+<span class="hljs-comment">// Output: NaN (Not a Number)</span>
+</div></code></pre>
+<p>✅ <strong>Right:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">a, b</span>) </span>{
+    <span class="hljs-built_in">console</span>.log(a + b);
+}
+
+add(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>);  <span class="hljs-comment">// Provide both arguments</span>
+<span class="hljs-comment">// Output: 8</span>
+</div></code></pre>
+<h3 id="check-your-understanding">Check Your Understanding</h3>
+<ul>
+<li><input type="checkbox" id="checkbox9"><label for="checkbox9">What are parameters?</label></li>
+<li><input type="checkbox" id="checkbox10"><label for="checkbox10">What are arguments?</label></li>
+<li><input type="checkbox" id="checkbox11"><label for="checkbox11">Does order matter?</label></li>
+<li><input type="checkbox" id="checkbox12"><label for="checkbox12">What happens if you don't pass an argument?</label></li>
+</ul>
+<hr>
+<h2 id="%F0%9F%93%9A-building-block-3-return-statements-%D9%88%D8%A7%D9%BE%D8%B3-%D8%A8%DA%BE%DB%8C%D8%AC%D9%86%D8%A7">📚 Building Block #3: Return Statements (واپس بھیجنا)</h2>
+<h3 id="what-is-return-%DA%A9%DB%8C%D8%A7-%DB%81%DB%92%D8%9F">What is Return? (کیا ہے؟)</h3>
+<p><strong>Urdu Analogy:</strong> Think of a function like <strong>photocopying a document</strong>:</p>
+<pre class="hljs"><code><div>You give: original document (input)
+Machine: makes copy (process)
+You get: photocopy back (RETURN!)
+</div></code></pre>
+<p>Without return, the machine just does its job but you get NOTHING back!</p>
+<h3 id="how-it-works">How It Works</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// THINKING: Function WITHOUT return</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">a, b</span>) </span>{
+    <span class="hljs-keyword">const</span> sum = a + b;
+    <span class="hljs-built_in">console</span>.log(sum);
+}
+
+<span class="hljs-keyword">const</span> result = add(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Result:"</span>, result);
+
+<span class="hljs-comment">// Output:</span>
+<span class="hljs-comment">// 8                    (from console.log inside)</span>
+<span class="hljs-comment">// Result: undefined    (function returned nothing!)</span>
+</div></code></pre>
+<pre class="hljs"><code><div><span class="hljs-comment">// THINKING: Function WITH return</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">a, b</span>) </span>{
+    <span class="hljs-keyword">const</span> sum = a + b;
+    <span class="hljs-keyword">return</span> sum;  <span class="hljs-comment">// Send value back!</span>
+}
+
+<span class="hljs-keyword">const</span> result = add(<span class="hljs-number">5</span>, <span class="hljs-number">3</span>);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Result:"</span>, result);
+
+<span class="hljs-comment">// Output:</span>
+<span class="hljs-comment">// Result: 8    (got the value back!)</span>
+</div></code></pre>
+<h3 id="why-return-matters">Why Return Matters</h3>
+<p><strong>Without return - can only console.log:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calculateDiscount</span>(<span class="hljs-params">price, percent</span>) </span>{
+    <span class="hljs-keyword">const</span> discount = price * (percent / <span class="hljs-number">100</span>);
+    <span class="hljs-built_in">console</span>.log(discount);  <span class="hljs-comment">// Just prints it</span>
+}
+
+calculateDiscount(<span class="hljs-number">1000</span>, <span class="hljs-number">10</span>);  <span class="hljs-comment">// Shows: 100</span>
+<span class="hljs-comment">// But can't use this value anywhere else!</span>
+</div></code></pre>
+<p><strong>With return - can use the value:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calculateDiscount</span>(<span class="hljs-params">price, percent</span>) </span>{
+    <span class="hljs-keyword">const</span> discount = price * (percent / <span class="hljs-number">100</span>);
+    <span class="hljs-keyword">return</span> discount;  <span class="hljs-comment">// Send it back!</span>
+}
+
+<span class="hljs-keyword">const</span> saved = calculateDiscount(<span class="hljs-number">1000</span>, <span class="hljs-number">10</span>);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"You saved Rs."</span>, saved);
+<span class="hljs-keyword">const</span> finalPrice = <span class="hljs-number">1000</span> - saved;
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Pay:"</span>, finalPrice);
+</div></code></pre>
+<h3 id="return-stops-function-immediately">Return Stops Function Immediately</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// THINKING: Code after return doesn't run!</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkAge</span>(<span class="hljs-params">age</span>) </span>{
+    <span class="hljs-keyword">if</span> (age &lt; <span class="hljs-number">18</span>) {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"Too young"</span>;
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"This never runs!"</span>);  <span class="hljs-comment">// Unreachable!</span>
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"Old enough"</span>;
+}
+
+<span class="hljs-built_in">console</span>.log(checkAge(<span class="hljs-number">15</span>));  <span class="hljs-comment">// Too young</span>
+<span class="hljs-built_in">console</span>.log(checkAge(<span class="hljs-number">20</span>));  <span class="hljs-comment">// Old enough</span>
+</div></code></pre>
+<h3 id="your-first-example">Your First Example</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Function to calculate square</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calculateSquare</span>(<span class="hljs-params">number</span>) </span>{
+    <span class="hljs-keyword">const</span> square = number _____ number;
+    _______ square;  <span class="hljs-comment">// Return the result!</span>
+}
+
+<span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Use the returned value</span>
+<span class="hljs-keyword">const</span> result = calculateSquare(<span class="hljs-number">5</span>);
+<span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Square of 5 is:"</span>, result);
+
+<span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Create function to check if number is even</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isEven</span>(<span class="hljs-params">num</span>) </span>{
+    <span class="hljs-keyword">if</span> (num _____ <span class="hljs-number">2</span> === <span class="hljs-number">0</span>) {
+        <span class="hljs-keyword">return</span> _______;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> _______;
+    }
+}
+
+<span class="hljs-built_in">console</span>.log(isEven(<span class="hljs-number">4</span>));   <span class="hljs-comment">// Should return: true</span>
+<span class="hljs-built_in">console</span>.log(isEven(<span class="hljs-number">7</span>));   <span class="hljs-comment">// Should return: false</span>
+</div></code></pre>
+<h3 id="common-mistakes">Common Mistakes</h3>
+<p>❌ <strong>Wrong:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">a, b</span>) </span>{
+    <span class="hljs-keyword">return</span> a + b;
+    <span class="hljs-keyword">const</span> sum = a + b;  <span class="hljs-comment">// Never runs!</span>
+}
+</div></code></pre>
+<p>✅ <strong>Right:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">a, b</span>) </span>{
+    <span class="hljs-keyword">const</span> sum = a + b;
+    <span class="hljs-keyword">return</span> sum;  <span class="hljs-comment">// Return at the end</span>
+}
+</div></code></pre>
+<hr>
+<p>❌ <strong>Wrong:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params">name</span>) </span>{
+    <span class="hljs-string">"Hello "</span> + name;  <span class="hljs-comment">// Missing return!</span>
+}
+
+<span class="hljs-keyword">const</span> message = greet(<span class="hljs-string">"Ali"</span>);
+<span class="hljs-built_in">console</span>.log(message);  <span class="hljs-comment">// undefined</span>
+</div></code></pre>
+<p>✅ <strong>Right:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params">name</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello "</span> + name;  <span class="hljs-comment">// Must use return</span>
+}
+
+<span class="hljs-keyword">const</span> message = greet(<span class="hljs-string">"Ali"</span>);
+<span class="hljs-built_in">console</span>.log(message);  <span class="hljs-comment">// Hello Ali</span>
+</div></code></pre>
+<h3 id="check-your-understanding">Check Your Understanding</h3>
+<ul>
+<li><input type="checkbox" id="checkbox13"><label for="checkbox13">What does return do?</label></li>
+<li><input type="checkbox" id="checkbox14"><label for="checkbox14">Can you use a returned value in other code?</label></li>
+<li><input type="checkbox" id="checkbox15"><label for="checkbox15">What happens to code after return?</label></li>
+<li><input type="checkbox" id="checkbox16"><label for="checkbox16">What does function return if you don't use return keyword?</label></li>
+</ul>
+<hr>
+<h2 id="%F0%9F%93%9A-building-block-4-scope-%D8%AF%D8%A7%D8%A6%D8%B1%DB%81-%DA%A9%D8%A7%D8%B1">📚 Building Block #4: Scope (دائرہ کار)</h2>
+<h3 id="what-is-scope-%DA%A9%DB%8C%D8%A7-%DB%81%DB%92%D8%9F">What is Scope? (کیا ہے؟)</h3>
+<p><strong>Urdu Analogy:</strong> Think of your <strong>house (گھر)</strong> and <strong>rooms (کمرے)</strong>:</p>
+<pre class="hljs"><code><div>HOUSE (گھر) = Global Scope
+├── Living Room (سٹنگ روم) = Function Scope
+│   └── TV (only in this room!)
+├── Kitchen (باورچی خانہ) = Function Scope
+│   └── Stove (only in this room!)
+└── Bedroom (کمرہ) = Function Scope
+    └── Bed (only in this room!)
+
+Things in HOUSE = available everywhere
+Things in ROOM = only available in that room
+</div></code></pre>
+<h3 id="global-vs-local-scope">Global vs Local Scope</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// THINKING: Variables and their scope</span>
+
+<span class="hljs-comment">// GLOBAL scope - available everywhere (گھر میں)</span>
+<span class="hljs-keyword">const</span> houseName = <span class="hljs-string">"Khan House"</span>;
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">livingRoom</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// LOCAL scope - only inside this function (سٹنگ روم میں)</span>
+    <span class="hljs-keyword">const</span> tv = <span class="hljs-string">"55 inch TV"</span>;
+    <span class="hljs-built_in">console</span>.log(houseName);  <span class="hljs-comment">// ✅ Can access global</span>
+    <span class="hljs-built_in">console</span>.log(tv);         <span class="hljs-comment">// ✅ Can access local</span>
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">kitchen</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-comment">// LOCAL scope - different function (باورچی خانے میں)</span>
+    <span class="hljs-keyword">const</span> stove = <span class="hljs-string">"Gas stove"</span>;
+    <span class="hljs-built_in">console</span>.log(houseName);  <span class="hljs-comment">// ✅ Can access global</span>
+    <span class="hljs-comment">// console.log(tv);      // ❌ Can't access livingRoom's tv</span>
+}
+
+livingRoom();
+<span class="hljs-built_in">console</span>.log(houseName);  <span class="hljs-comment">// ✅ Can access global</span>
+<span class="hljs-comment">// console.log(tv);      // ❌ Can't access function's local variable</span>
+</div></code></pre>
+<h3 id="block-scope-with-letconst">Block Scope (with let/const)</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// THINKING: Variables inside { } blocks</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">checkAge</span>(<span class="hljs-params">age</span>) </span>{
+    <span class="hljs-keyword">if</span> (age &gt;= <span class="hljs-number">18</span>) {
+        <span class="hljs-comment">// Block scope - only inside these { }</span>
+        <span class="hljs-keyword">const</span> message = <span class="hljs-string">"You can vote"</span>;
+        <span class="hljs-built_in">console</span>.log(message);  <span class="hljs-comment">// ✅ Works here</span>
+    }
+    
+    <span class="hljs-comment">// console.log(message);  // ❌ Error! message doesn't exist here</span>
+}
+</div></code></pre>
+<h3 id="why-scope-matters">Why Scope Matters</h3>
+<p><strong>Good scope - no conflicts:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calculateTax</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">const</span> rate = <span class="hljs-number">0.15</span>;  <span class="hljs-comment">// Local to this function</span>
+    <span class="hljs-keyword">return</span> price * rate;
+}
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calculateDiscount</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">const</span> rate = <span class="hljs-number">0.10</span>;  <span class="hljs-comment">// Different rate, no problem!</span>
+    <span class="hljs-keyword">return</span> price * rate;
+}
+
+<span class="hljs-comment">// Both functions can have their own "rate" variable!</span>
+</div></code></pre>
+<h3 id="the-scope-chain">The Scope Chain</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// THINKING: JavaScript looks for variables in order</span>
+
+<span class="hljs-keyword">const</span> city = <span class="hljs-string">"Lahore"</span>;  <span class="hljs-comment">// Global</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showLocation</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">const</span> country = <span class="hljs-string">"Pakistan"</span>;  <span class="hljs-comment">// Function scope</span>
+    
+    <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showDetails</span>(<span class="hljs-params"></span>) </span>{
+        <span class="hljs-keyword">const</span> area = <span class="hljs-string">"DHA"</span>;  <span class="hljs-comment">// Nested function scope</span>
+        
+        <span class="hljs-comment">// Can access all three!</span>
+        <span class="hljs-built_in">console</span>.log(area);     <span class="hljs-comment">// ✅ Local</span>
+        <span class="hljs-built_in">console</span>.log(country);  <span class="hljs-comment">// ✅ Parent function</span>
+        <span class="hljs-built_in">console</span>.log(city);     <span class="hljs-comment">// ✅ Global</span>
+    }
+    
+    showDetails();
+    <span class="hljs-comment">// console.log(area);  // ❌ Can't access child's variable</span>
+}
+
+showLocation();
+</div></code></pre>
+<h3 id="your-first-example">Your First Example</h3>
+<pre class="hljs"><code><div><span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Practice with scope</span>
+
+<span class="hljs-keyword">const</span> university = <span class="hljs-string">"Superior University"</span>;  <span class="hljs-comment">// Global</span>
+
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">introduceStudent</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">const</span> studentName = <span class="hljs-string">"Hassan"</span>;  <span class="hljs-comment">// Local</span>
+    
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"University:"</span>, _______);  <span class="hljs-comment">// Can you access global?</span>
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Student:"</span>, _______);     <span class="hljs-comment">// Can you access local?</span>
+}
+
+introduceStudent();
+
+<span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Try to access studentName here - what happens?</span>
+<span class="hljs-comment">// console.log(studentName);  // Will this work?</span>
+</div></code></pre>
+<h3 id="common-mistakes">Common Mistakes</h3>
+<p>❌ <strong>Wrong:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params"></span>) </span>{
+    message = <span class="hljs-string">"Hello"</span>;  <span class="hljs-comment">// No const/let! Creates global (bad!)</span>
+}
+
+greet();
+<span class="hljs-built_in">console</span>.log(message);  <span class="hljs-comment">// Works but BAD PRACTICE!</span>
+</div></code></pre>
+<p>✅ <strong>Right:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">greet</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">const</span> message = <span class="hljs-string">"Hello"</span>;  <span class="hljs-comment">// Properly scoped</span>
+    <span class="hljs-keyword">return</span> message;
+}
+
+<span class="hljs-keyword">const</span> greeting = greet();
+<span class="hljs-built_in">console</span>.log(greeting);  <span class="hljs-comment">// Use return instead</span>
+</div></code></pre>
+<hr>
+<p>❌ <strong>Wrong:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calculate</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">const</span> result = <span class="hljs-number">100</span>;
+}
+
+calculate();
+<span class="hljs-built_in">console</span>.log(result);  <span class="hljs-comment">// ❌ Error! result is local</span>
+</div></code></pre>
+<p>✅ <strong>Right:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calculate</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">const</span> result = <span class="hljs-number">100</span>;
+    <span class="hljs-keyword">return</span> result;  <span class="hljs-comment">// Return it!</span>
+}
+
+<span class="hljs-keyword">const</span> answer = calculate();
+<span class="hljs-built_in">console</span>.log(answer);  <span class="hljs-comment">// ✅ Works!</span>
+</div></code></pre>
+<h3 id="check-your-understanding">Check Your Understanding</h3>
+<ul>
+<li><input type="checkbox" id="checkbox17"><label for="checkbox17">What is global scope?</label></li>
+<li><input type="checkbox" id="checkbox18"><label for="checkbox18">What is local scope?</label></li>
+<li><input type="checkbox" id="checkbox19"><label for="checkbox19">Can functions access global variables?</label></li>
+<li><input type="checkbox" id="checkbox20"><label for="checkbox20">Can code outside function access local variables?</label></li>
+</ul>
+<hr>
+<h2 id="%F0%9F%92%BB-practice-session-building-utility-functions">💻 Practice Session: Building Utility Functions</h2>
+<h3 id="%F0%9F%8E%AF-practice-goal">🎯 Practice Goal</h3>
+<p>By the end of this section, you'll create reusable utility functions!</p>
+<h3 id="exercise-1-guided-practice-%DB%81%D9%85-%D8%B3%D8%A7%D8%AA%DA%BE-%DA%A9%D8%B1%DB%8C%DA%BA">Exercise 1: Guided Practice (ہم ساتھ کریں)</h3>
+<p><strong>Scenario:</strong> Create a function to format Pakistani currency</p>
+<p><strong>Starter Code:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment">// TODO Step 1: Create function</span>
+<span class="hljs-comment">// HINT: Takes amount (number), returns formatted string</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">formatCurrency</span>(<span class="hljs-params">amount</span>) </span>{
+    <span class="hljs-comment">// TODO Step 2: Add "Rs." prefix</span>
+    <span class="hljs-keyword">const</span> formatted = <span class="hljs-string">"Rs. "</span> + amount;
+    
+    <span class="hljs-comment">// TODO Step 3: Return the result</span>
+    _______ formatted;
+}
+
+<span class="hljs-comment">// TODO Step 4: Test it!</span>
+<span class="hljs-built_in">console</span>.log(formatCurrency(<span class="hljs-number">500</span>));    <span class="hljs-comment">// Rs. 500</span>
+<span class="hljs-built_in">console</span>.log(formatCurrency(<span class="hljs-number">1250</span>));   <span class="hljs-comment">// Rs. 1250</span>
+<span class="hljs-built_in">console</span>.log(formatCurrency(<span class="hljs-number">99.50</span>));  <span class="hljs-comment">// Rs. 99.5</span>
+</div></code></pre>
+<hr>
+<h3 id="exercise-2-temperature-converter-%D8%A7%D8%A8-%D8%A2%D9%BE">Exercise 2: Temperature Converter (اب آپ)</h3>
+<p><strong>Problem:</strong> Convert Celsius to Fahrenheit</p>
+<p><strong>Formula:</strong> F = (C × 9/5) + 32</p>
+<p><strong>Requirements:</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox21"><label for="checkbox21">Function named convertToFahrenheit</label></li>
+<li><input type="checkbox" id="checkbox22"><label for="checkbox22">Takes celsius as parameter</label></li>
+<li><input type="checkbox" id="checkbox23"><label for="checkbox23">Returns fahrenheit value</label></li>
+<li><input type="checkbox" id="checkbox24"><label for="checkbox24">Works with decimals</label></li>
+</ul>
+<p><strong>Starter Code:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">convertToFahrenheit</span>(<span class="hljs-params">celsius</span>) </span>{
+    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Apply formula</span>
+    <span class="hljs-keyword">const</span> fahrenheit = (celsius _____ <span class="hljs-number">9</span>/<span class="hljs-number">5</span>) _____ <span class="hljs-number">32</span>;
+    
+    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Return result</span>
+    _______ fahrenheit;
+}
+
+<span class="hljs-comment">// Test cases</span>
+<span class="hljs-built_in">console</span>.log(convertToFahrenheit(<span class="hljs-number">0</span>));    <span class="hljs-comment">// Should be 32</span>
+<span class="hljs-built_in">console</span>.log(convertToFahrenheit(<span class="hljs-number">100</span>));  <span class="hljs-comment">// Should be 212</span>
+<span class="hljs-built_in">console</span>.log(convertToFahrenheit(<span class="hljs-number">37</span>));   <span class="hljs-comment">// Should be 98.6</span>
+</div></code></pre>
+<p><strong>Don't Look Below Until You Try! ⬇️</strong></p>
+<hr>
+<p><strong>Hints (if stuck):</strong></p>
+<details>
+<summary>Stuck on formula?</summary>
+</details><pre class="hljs"><code><div><span class="hljs-keyword">const</span> fahrenheit = (celsius * <span class="hljs-number">9</span>/<span class="hljs-number">5</span>) + <span class="hljs-number">32</span>;
+<span class="hljs-keyword">return</span> fahrenheit;
+</div></code></pre>
+
+<hr>
+<h3 id="exercise-3-string-utilities">Exercise 3: String Utilities</h3>
+<p><strong>Problem:</strong> Create two string functions</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// Function 1: Convert to UPPERCASE</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">shout</span>(<span class="hljs-params">text</span>) </span>{
+    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Use .toUpperCase() method</span>
+    <span class="hljs-keyword">return</span> text.____________();
+}
+
+<span class="hljs-built_in">console</span>.log(shout(<span class="hljs-string">"hello"</span>));  <span class="hljs-comment">// HELLO</span>
+
+<span class="hljs-comment">// Function 2: Count characters</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">countLetters</span>(<span class="hljs-params">text</span>) </span>{
+    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Use .length property</span>
+    <span class="hljs-keyword">return</span> text._______;
+}
+
+<span class="hljs-built_in">console</span>.log(countLetters(<span class="hljs-string">"Lahore"</span>));  <span class="hljs-comment">// 6</span>
+</div></code></pre>
+<hr>
+<h3 id="exercise-4-math-utilities">Exercise 4: Math Utilities</h3>
+<p><strong>Problem:</strong> Create calculator functions</p>
+<pre class="hljs"><code><div><span class="hljs-comment">// Function 1: Add two numbers</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">a, b</span>) </span>{
+    <span class="hljs-keyword">return</span> _______;
+}
+
+<span class="hljs-comment">// Function 2: Find maximum of two numbers</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">findMax</span>(<span class="hljs-params">a, b</span>) </span>{
+    <span class="hljs-keyword">if</span> (a _____ b) {
+        <span class="hljs-keyword">return</span> a;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> b;
+    }
+}
+
+<span class="hljs-comment">// Function 3: Calculate percentage</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calculatePercentage</span>(<span class="hljs-params">obtained, total</span>) </span>{
+    <span class="hljs-keyword">return</span> (obtained _____ total) _____ <span class="hljs-number">100</span>;
+}
+
+<span class="hljs-comment">// Test them</span>
+<span class="hljs-built_in">console</span>.log(add(<span class="hljs-number">10</span>, <span class="hljs-number">5</span>));              <span class="hljs-comment">// 15</span>
+<span class="hljs-built_in">console</span>.log(findMax(<span class="hljs-number">20</span>, <span class="hljs-number">15</span>));         <span class="hljs-comment">// 20</span>
+<span class="hljs-built_in">console</span>.log(calculatePercentage(<span class="hljs-number">85</span>, <span class="hljs-number">100</span>));  <span class="hljs-comment">// 85</span>
+</div></code></pre>
+<hr>
+<h3 id="exercise-5-validation-function">Exercise 5: Validation Function</h3>
+<p><strong>Problem:</strong> Check if student passed (marks &gt;= 50)</p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hasPassed</span>(<span class="hljs-params">marks</span>) </span>{
+    <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Return true if marks &gt;= 50, false otherwise</span>
+    <span class="hljs-keyword">if</span> (marks _______) {
+        <span class="hljs-keyword">return</span> _______;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-keyword">return</span> _______;
+    }
+}
+
+<span class="hljs-comment">// Shorter way:</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">hasPassedShort</span>(<span class="hljs-params">marks</span>) </span>{
+    <span class="hljs-keyword">return</span> marks &gt;= <span class="hljs-number">50</span>;  <span class="hljs-comment">// Returns true or false directly!</span>
+}
+
+<span class="hljs-comment">// Test</span>
+<span class="hljs-built_in">console</span>.log(hasPassed(<span class="hljs-number">60</span>));   <span class="hljs-comment">// true</span>
+<span class="hljs-built_in">console</span>.log(hasPassed(<span class="hljs-number">45</span>));   <span class="hljs-comment">// false</span>
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%9A%80-%D8%A7%D8%AC-%DA%A9%D8%A7-%DA%86%DB%8C%D9%84%D9%86%D8%AC-todays-challenge">🚀 اج کا چیلنج (Today's Challenge)</h2>
+<h3 id="project-utility-functions-library">Project: Utility Functions Library</h3>
+<p><strong>افادی فنکشنز لائبریری</strong></p>
+<p><strong>The Problem:</strong>
+You're building a library of helper functions that developers can use in their projects. Create functions for common tasks: currency conversion, discounts, phone formatting, and email validation!</p>
+<p><strong>What You're Building:</strong>
+A collection of 4+ reusable utility functions with a menu system to test them all!</p>
+<p><strong>Success Criteria:</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox25"><label for="checkbox25">All functions work correctly</label></li>
+<li><input type="checkbox" id="checkbox26"><label for="checkbox26">Each function returns a value (no just console.log)</label></li>
+<li><input type="checkbox" id="checkbox27"><label for="checkbox27">Handles invalid inputs gracefully</label></li>
+<li><input type="checkbox" id="checkbox28"><label for="checkbox28">Code is well-commented</label></li>
+<li><input type="checkbox" id="checkbox29"><label for="checkbox29">Easy to use and test</label></li>
+</ul>
+<hr>
+<h3 id="phase-1-planning-%D8%B3%D9%88%DA%86%DB%8C%DA%BA-%D9%BE%DB%81%D9%84%DB%92">Phase 1: Planning (سوچیں پہلے)</h3>
+<p>Before coding, answer:</p>
+<ol>
+<li>
+<p><strong>What functions do I need?</strong></p>
+<ul>
+<li>convertCurrency(amount, from, to)</li>
+<li>calculateDiscount(price, percent)</li>
+<li>formatPhoneNumber(digits)</li>
+<li>validateEmail(email)</li>
+</ul>
+</li>
+<li>
+<p><strong>What should each function do?</strong></p>
+<ul>
+<li>Take input parameters</li>
+<li>Process the data</li>
+<li>Return result</li>
+<li>Handle errors</li>
+</ul>
+</li>
+<li>
+<p><strong>How will I test them?</strong></p>
+<ul>
+<li>Call each function with test data</li>
+<li>Show results in console</li>
+</ul>
+</li>
+</ol>
+<p><strong>Planning Checkpoint:</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox30"><label for="checkbox30">I understand what each function needs to do</label></li>
+<li><input type="checkbox" id="checkbox31"><label for="checkbox31">I know what parameters each needs</label></li>
+<li><input type="checkbox" id="checkbox32"><label for="checkbox32">I know what each should return</label></li>
+<li><input type="checkbox" id="checkbox33"><label for="checkbox33">I have test cases in mind</label></li>
+</ul>
+<hr>
+<h3 id="phase-2-foundation-%D8%A8%D9%86%DB%8C%D8%A7%D8%AF">Phase 2: Foundation (بنیاد)</h3>
+<p><strong>Starter Code:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-meta">&lt;!DOCTYPE <span class="hljs-meta-keyword">html</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">html</span> <span class="hljs-attr">lang</span>=<span class="hljs-string">"en"</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">head</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">charset</span>=<span class="hljs-string">"UTF-8"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">meta</span> <span class="hljs-attr">name</span>=<span class="hljs-string">"viewport"</span> <span class="hljs-attr">content</span>=<span class="hljs-string">"width=device-width, initial-scale=1.0"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">title</span>&gt;</span>Utility Functions Library<span class="hljs-tag">&lt;/<span class="hljs-name">title</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">head</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">body</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>⚙️ Utility Functions Library<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h2</span>&gt;</span>افادی فنکشنز لائبریری<span class="hljs-tag">&lt;/<span class="hljs-name">h2</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">h3</span>&gt;</span>Press F12 to see all functions in action!<span class="hljs-tag">&lt;/<span class="hljs-name">h3</span>&gt;</span>
+    
+    <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><span class="javascript">
+        <span class="hljs-comment">// ===================================</span>
+        <span class="hljs-comment">// UTILITY FUNCTIONS LIBRARY</span>
+        <span class="hljs-comment">// By: [Your Name]</span>
+        <span class="hljs-comment">// Date: [Today's Date]</span>
+        <span class="hljs-comment">// ===================================</span>
+        
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"⚙️ افادی فنکشنز لائبریری"</span>);
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"==============================\n"</span>);
+        
+        <span class="hljs-comment">// ========== FUNCTION 1: Currency Converter ==========</span>
+        
+        <span class="hljs-comment">/**
+         * Converts currency between PKR, USD, EUR
+         * @param {number} amount - Amount to convert
+         * @param {string} fromCurrency - Source currency (PKR/USD/EUR)
+         * @param {string} toCurrency - Target currency (PKR/USD/EUR)
+         * @returns {number} Converted amount
+         */</span>
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">convertCurrency</span>(<span class="hljs-params">amount, fromCurrency, toCurrency</span>) </span>{
+            <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Define exchange rates (approximate)</span>
+            <span class="hljs-keyword">const</span> rates = {
+                <span class="hljs-attr">PKR</span>: <span class="hljs-number">1</span>,
+                <span class="hljs-attr">USD</span>: <span class="hljs-number">278</span>,    <span class="hljs-comment">// 1 USD = 278 PKR</span>
+                <span class="hljs-attr">EUR</span>: <span class="hljs-number">305</span>     <span class="hljs-comment">// 1 EUR = 305 PKR</span>
+            };
+            
+            <span class="hljs-comment">// TODO Step 1: Convert to PKR first</span>
+            <span class="hljs-keyword">const</span> inPKR = amount _____ rates[fromCurrency];
+            
+            <span class="hljs-comment">// TODO Step 2: Convert from PKR to target currency</span>
+            <span class="hljs-keyword">const</span> result = inPKR _____ rates[toCurrency];
+            
+            <span class="hljs-comment">// TODO Step 3: Return result (round to 2 decimals)</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.round(result * <span class="hljs-number">100</span>) / <span class="hljs-number">100</span>;
+        }
+        
+        <span class="hljs-comment">// ========== FUNCTION 2: Discount Calculator ==========</span>
+        
+        <span class="hljs-comment">/**
+         * Calculates discounted price
+         * <span class="hljs-doctag">@param <span class="hljs-type">{number}</span> <span class="hljs-variable">price</span></span> - Original price
+         * <span class="hljs-doctag">@param <span class="hljs-type">{number}</span> <span class="hljs-variable">discountPercent</span></span> - Discount percentage
+         * <span class="hljs-doctag">@returns <span class="hljs-type">{number}</span> </span>Final price after discount
+         */</span>
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calculateDiscount</span>(<span class="hljs-params">price, discountPercent</span>) </span>{
+            <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Validate inputs</span>
+            <span class="hljs-keyword">if</span> (price &lt; <span class="hljs-number">0</span> || discountPercent &lt; <span class="hljs-number">0</span> || discountPercent &gt; <span class="hljs-number">100</span>) {
+                <span class="hljs-keyword">return</span> <span class="hljs-string">"Invalid input!"</span>;
+            }
+            
+            <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Calculate discount amount</span>
+            <span class="hljs-keyword">const</span> discount = price _____ (discountPercent / <span class="hljs-number">100</span>);
+            
+            <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Calculate final price</span>
+            <span class="hljs-keyword">const</span> finalPrice = price _____ discount;
+            
+            <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Return final price</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.round(finalPrice * <span class="hljs-number">100</span>) / <span class="hljs-number">100</span>;
+        }
+        
+        <span class="hljs-comment">// ========== FUNCTION 3: Phone Number Formatter ==========</span>
+        
+        <span class="hljs-comment">/**
+         * Formats Pakistani phone number to +92-XXX-XXXXXXX
+         * <span class="hljs-doctag">@param <span class="hljs-type">{string}</span> <span class="hljs-variable">digits</span></span> - 11 digit number (03001234567)
+         * <span class="hljs-doctag">@returns <span class="hljs-type">{string}</span> </span>Formatted number
+         */</span>
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">formatPhoneNumber</span>(<span class="hljs-params">digits</span>) </span>{
+            <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Remove any spaces or dashes</span>
+            <span class="hljs-keyword">const</span> cleaned = digits.replace(<span class="hljs-regexp">/[-\s]/g</span>, <span class="hljs-string">""</span>);
+            
+            <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Check if 11 digits</span>
+            <span class="hljs-keyword">if</span> (cleaned.length _______ <span class="hljs-number">11</span>) {
+                <span class="hljs-keyword">return</span> <span class="hljs-string">"Error: Must be 11 digits"</span>;
+            }
+            
+            <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Check if starts with 03</span>
+            <span class="hljs-keyword">if</span> (!cleaned.startsWith(<span class="hljs-string">"03"</span>)) {
+                <span class="hljs-keyword">return</span> <span class="hljs-string">"Error: Must start with 03"</span>;
+            }
+            
+            <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Format as +92-XXX-XXXXXXX</span>
+            <span class="hljs-comment">// HINT: Remove leading 0, add +92</span>
+            <span class="hljs-keyword">const</span> formatted = <span class="hljs-string">"+92-"</span> + cleaned.slice(<span class="hljs-number">1</span>, <span class="hljs-number">4</span>) + <span class="hljs-string">"-"</span> + cleaned.slice(<span class="hljs-number">4</span>);
+            
+            <span class="hljs-keyword">return</span> formatted;
+        }
+        
+        <span class="hljs-comment">// ========== FUNCTION 4: Email Validator ==========</span>
+        
+        <span class="hljs-comment">/**
+         * Validates email format (basic check)
+         * <span class="hljs-doctag">@param <span class="hljs-type">{string}</span> <span class="hljs-variable">email</span></span> - Email address to validate
+         * <span class="hljs-doctag">@returns <span class="hljs-type">{boolean}</span> </span>true if valid, false otherwise
+         */</span>
+        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">validateEmail</span>(<span class="hljs-params">email</span>) </span>{
+            <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Check if email is not empty</span>
+            <span class="hljs-keyword">if</span> (email.length === <span class="hljs-number">0</span>) {
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            }
+            
+            <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Check if contains @ symbol</span>
+            <span class="hljs-keyword">if</span> (!email.includes(<span class="hljs-string">"@"</span>)) {
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            }
+            
+            <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Check if @ is not first or last character</span>
+            <span class="hljs-keyword">const</span> atPosition = email.indexOf(<span class="hljs-string">"@"</span>);
+            <span class="hljs-keyword">if</span> (atPosition === <span class="hljs-number">0</span> || atPosition === email.length - <span class="hljs-number">1</span>) {
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            }
+            
+            <span class="hljs-comment">// <span class="hljs-doctag">TODO:</span> Check if contains . after @</span>
+            <span class="hljs-keyword">const</span> domain = email.slice(atPosition);
+            <span class="hljs-keyword">if</span> (!domain.includes(<span class="hljs-string">"."</span>)) {
+                <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
+            }
+            
+            <span class="hljs-comment">// All checks passed!</span>
+            <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+        }
+        
+        <span class="hljs-comment">// ========== TESTING THE FUNCTIONS ==========</span>
+        
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"===== FUNCTION TESTS =====\n"</span>);
+        
+        <span class="hljs-comment">// Test 1: Currency Converter</span>
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"1️⃣ CURRENCY CONVERTER"</span>);
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"100 USD to PKR:"</span>, convertCurrency(<span class="hljs-number">100</span>, <span class="hljs-string">"USD"</span>, <span class="hljs-string">"PKR"</span>));
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"5000 PKR to USD:"</span>, convertCurrency(<span class="hljs-number">5000</span>, <span class="hljs-string">"PKR"</span>, <span class="hljs-string">"USD"</span>));
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"50 EUR to PKR:"</span>, convertCurrency(<span class="hljs-number">50</span>, <span class="hljs-string">"EUR"</span>, <span class="hljs-string">"PKR"</span>));
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">""</span>);
+        
+        <span class="hljs-comment">// Test 2: Discount Calculator</span>
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"2️⃣ DISCOUNT CALCULATOR"</span>);
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Rs. 1000 with 10% off:"</span>, calculateDiscount(<span class="hljs-number">1000</span>, <span class="hljs-number">10</span>));
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Rs. 5000 with 25% off:"</span>, calculateDiscount(<span class="hljs-number">5000</span>, <span class="hljs-number">25</span>));
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Rs. 750 with 15% off:"</span>, calculateDiscount(<span class="hljs-number">750</span>, <span class="hljs-number">15</span>));
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">""</span>);
+        
+        <span class="hljs-comment">// Test 3: Phone Formatter</span>
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"3️⃣ PHONE NUMBER FORMATTER"</span>);
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"03001234567 →"</span>, formatPhoneNumber(<span class="hljs-string">"03001234567"</span>));
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"0321-9876543 →"</span>, formatPhoneNumber(<span class="hljs-string">"0321-9876543"</span>));
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"0300 123 4567 →"</span>, formatPhoneNumber(<span class="hljs-string">"0300 123 4567"</span>));
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">""</span>);
+        
+        <span class="hljs-comment">// Test 4: Email Validator</span>
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"4️⃣ EMAIL VALIDATOR"</span>);
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"ali@gmail.com:"</span>, validateEmail(<span class="hljs-string">"ali@gmail.com"</span>));
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"invalid.email:"</span>, validateEmail(<span class="hljs-string">"invalid.email"</span>));
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"@gmail.com:"</span>, validateEmail(<span class="hljs-string">"@gmail.com"</span>));
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"test@:"</span>, validateEmail(<span class="hljs-string">"test@"</span>));
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">""</span>);
+        
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"=============================="</span>);
+        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"✅ All functions tested!"</span>);
+        
+        <span class="hljs-comment">// TODO BONUS: Create a menu system</span>
+        <span class="hljs-comment">// Allow user to choose which function to use</span>
+        
+    </span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">body</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">html</span>&gt;</span>
+</div></code></pre>
+<hr>
+<h3 id="phase-3-milestones-%D8%B3%D9%86%DA%AF-%D9%85%DB%8C%D9%84">Phase 3: Milestones (سنگ میل)</h3>
+<p><strong>Milestone 1: Currency Converter Works ✅</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox34"><label for="checkbox34">Converts USD to PKR correctly</label></li>
+<li><input type="checkbox" id="checkbox35"><label for="checkbox35">Converts PKR to USD correctly</label></li>
+<li><input type="checkbox" id="checkbox36"><label for="checkbox36">Handles all three currencies</label></li>
+<li>Test: 100 USD should give ~27,800 PKR</li>
+</ul>
+<p><strong>Milestone 2: Discount Calculator Works ✅</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox37"><label for="checkbox37">Calculates discount correctly</label></li>
+<li><input type="checkbox" id="checkbox38"><label for="checkbox38">Returns final price</label></li>
+<li><input type="checkbox" id="checkbox39"><label for="checkbox39">Handles invalid inputs</label></li>
+<li>Test: Rs. 1000 with 10% off = Rs. 900</li>
+</ul>
+<p><strong>Milestone 3: Phone Formatter Works ✅</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox40"><label for="checkbox40">Formats 11-digit numbers correctly</label></li>
+<li><input type="checkbox" id="checkbox41"><label for="checkbox41">Validates number format</label></li>
+<li><input type="checkbox" id="checkbox42"><label for="checkbox42">Handles different input formats</label></li>
+<li>Test: &quot;03001234567&quot; → &quot;+92-300-1234567&quot;</li>
+</ul>
+<p><strong>Milestone 4: Email Validator Works ✅</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox43"><label for="checkbox43">Returns true for valid emails</label></li>
+<li><input type="checkbox" id="checkbox44"><label for="checkbox44">Returns false for invalid emails</label></li>
+<li><input type="checkbox" id="checkbox45"><label for="checkbox45">Checks all validation rules</label></li>
+<li>Test: &quot;ali@gmail.com&quot; → true</li>
+</ul>
+<hr>
+<h3 id="debugging-guide-%D8%A7%DA%AF%D8%B1-%D9%BE%DA%BE%D9%86%D8%B3-%D8%AC%D8%A7%D8%A6%DB%8C%DA%BA">Debugging Guide (اگر پھنس جائیں)</h3>
+<p><strong>Problem: Function returns undefined</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox46"><label for="checkbox46">Check: Did you use </label><code>return</code> keyword?</li>
+<li><input type="checkbox" id="checkbox47"><label for="checkbox47">Check: Is return statement inside the function?</label></li>
+<li><input type="checkbox" id="checkbox48"><label for="checkbox48">Check: Are you spelling variable names correctly?</label></li>
+</ul>
+<p><strong>Problem: Wrong calculations</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox49"><label for="checkbox49">Add console.log inside function to see values</label></li>
+<li><input type="checkbox" id="checkbox50"><label for="checkbox50">Check: Are you using correct operators (* / + -)?</label></li>
+<li><input type="checkbox" id="checkbox51"><label for="checkbox51">Check: Are numbers not strings? (no quotes!)</label></li>
+</ul>
+<p><strong>Problem: String methods not working</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox52"><label for="checkbox52">Check: Is variable actually a string?</label></li>
+<li><input type="checkbox" id="checkbox53"><label for="checkbox53">Check: Are you calling method correctly? (.includes, .slice, etc.)</label></li>
+<li><input type="checkbox" id="checkbox54"><label for="checkbox54">Check: Are you returning the result?</label></li>
+</ul>
+<p><strong>Common Logic Issues:</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment">// ❌ WRONG: Forgot to return</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">a, b</span>) </span>{
+    a + b;  <span class="hljs-comment">// Missing return!</span>
+}
+
+<span class="hljs-comment">// ✅ RIGHT:</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">add</span>(<span class="hljs-params">a, b</span>) </span>{
+    <span class="hljs-keyword">return</span> a + b;
+}
+</div></code></pre>
+<hr>
+<h3 id="extension-challenges-%D8%A8%D9%88%D9%86%D8%B3-%DA%86%DB%8C%D9%84%D9%86%D8%AC">Extension Challenges (بونس چیلنج)</h3>
+<p><strong>If you finish early:</strong></p>
+<p>🌟 <strong>Level 1: Add More Utilities</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment">// Calculate CGPA from marks</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calculateCGPA</span>(<span class="hljs-params">marks</span>) </span>{
+    <span class="hljs-comment">// marks is array: [85, 90, 78, 92]</span>
+    <span class="hljs-comment">// return average / 25 (assuming 100 marks = 4.0 GPA)</span>
+}
+
+<span class="hljs-comment">// Check if leap year</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">isLeapYear</span>(<span class="hljs-params">year</span>) </span>{
+    <span class="hljs-comment">// return true if leap year</span>
+}
+
+<span class="hljs-comment">// Generate random number between min and max</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">randomBetween</span>(<span class="hljs-params">min, max</span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.floor(<span class="hljs-built_in">Math</span>.random() * (max - min + <span class="hljs-number">1</span>)) + min;
+}
+</div></code></pre>
+<p>🌟🌟 <strong>Level 2: Error Handling</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment">// Add try-catch for error handling</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">safeConvert</span>(<span class="hljs-params">amount, from, to</span>) </span>{
+    <span class="hljs-keyword">try</span> {
+        <span class="hljs-keyword">return</span> convertCurrency(amount, <span class="hljs-keyword">from</span>, to);
+    } <span class="hljs-keyword">catch</span> (error) {
+        <span class="hljs-keyword">return</span> <span class="hljs-string">"Error: "</span> + error.message;
+    }
+}
+</div></code></pre>
+<p>🌟🌟🌟 <strong>Level 3: Interactive Menu</strong></p>
+<pre class="hljs"><code><div><span class="hljs-comment">// Create menu to choose function</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">showMenu</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"Choose a function:"</span>);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"1. Convert Currency"</span>);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"2. Calculate Discount"</span>);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"3. Format Phone"</span>);
+    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">"4. Validate Email"</span>);
+}
+</div></code></pre>
+<hr>
+<h2 id="%F0%9F%93%9D-daily-quiz-5-%D9%85%D9%86%D9%B9-%DA%A9%D8%A7-%D9%B9%DB%8C%D8%B3%D9%B9">📝 Daily Quiz (5 منٹ کا ٹیسٹ)</h2>
+<p><strong>Instructions:</strong> Answer WITHOUT looking at notes!</p>
+<p><strong>1. How do you declare a function?</strong></p>
+<ul>
+<li>A) <code>function = myFunction() {}</code></li>
+<li>B) <code>function myFunction() {}</code></li>
+<li>C) <code>myFunction() = function {}</code></li>
+<li>D) <code>def myFunction() {}</code></li>
+</ul>
+<details>
+<summary>See Answer (Try first!)</summary>
+</details><p><strong>Answer: B</strong> - <code>function myFunction() {}</code>. Use the <code>function</code> keyword, then name, then parentheses, then curly braces with code inside.</p>
+
+<hr>
+<p><strong>2. What's the difference between parameters and arguments?</strong></p>
+<ul>
+<li>A) They're the same thing</li>
+<li>B) Parameters are in definition, arguments are in call</li>
+<li>C) Parameters are optional, arguments are required</li>
+<li>D) Parameters are numbers, arguments are strings</li>
+</ul>
+<details>
+<summary>See Answer (Try first!)</summary>
+<p><strong>Answer: B</strong> - Parameters are placeholders in function definition (خالی ڈبے). Arguments are actual values when calling function (بھرے ہوئے ڈبے). Example: <code>function greet(name)</code> - name is parameter. <code>greet(&quot;Ali&quot;)</code> - &quot;Ali&quot; is argument.</p>
+</details>
+<hr>
+<p><strong>3. What does this function return?</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">calculate</span>(<span class="hljs-params">x</span>) </span>{
+    <span class="hljs-keyword">const</span> result = x * <span class="hljs-number">2</span>;
+    <span class="hljs-built_in">console</span>.log(result);
+}
+<span class="hljs-keyword">const</span> answer = calculate(<span class="hljs-number">5</span>);
+</div></code></pre>
+<ul>
+<li>A) 10</li>
+<li>B) 5</li>
+<li>C) undefined</li>
+<li>D) Error</li>
+</ul>
+<details>
+<summary>See Answer (Try first!)</summary>
+<p><strong>Answer: C</strong> - undefined. The function console.logs 10, but doesn't RETURN anything. Without <code>return</code> keyword, functions return undefined. To fix: <code>return result;</code></p>
+</details>
+<hr>
+<p><strong>4. What is local scope?</strong></p>
+<ul>
+<li>A) Variables accessible everywhere</li>
+<li>B) Variables only inside a function</li>
+<li>C) Variables declared with var</li>
+<li>D) Global variables</li>
+</ul>
+<details>
+<summary>See Answer (Try first!)</summary>
+<p><strong>Answer: B</strong> - Local scope means variables are only accessible inside the function where they're declared. Like items in a room - only accessible in that room (کمرے میں), not in the whole house.</p>
+</details>
+<hr>
+<p><strong>5. What's the output?</strong></p>
+<pre class="hljs"><code><div><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">test</span>(<span class="hljs-params"></span>) </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"Hello"</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"World"</span>;
+}
+<span class="hljs-built_in">console</span>.log(test());
+</div></code></pre>
+<ul>
+<li>A) Hello World</li>
+<li>B) World</li>
+<li>C) Hello</li>
+<li>D) undefined</li>
+</ul>
+<details>
+<summary>See Answer (Try first!)</summary>
+<p><strong>Answer: C</strong> - &quot;Hello&quot;. Once return runs, function stops immediately. The second return never executes. Code after return is unreachable!</p>
+</details>
+<hr>
+<p><strong>Scoring:</strong></p>
+<ul>
+<li><strong>5/5:</strong> 🎉 Function Master! You understand functions completely!</li>
+<li><strong>4/5:</strong> 👏 Great! Review the one you missed</li>
+<li><strong>3/5:</strong> 👍 Good! Read through concepts again</li>
+<li><strong><img class="emoji" alt="heart" src="data:image/png;base64,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" />/5:</strong> 💪 Practice more with functions</li>
+</ul>
+<hr>
+<h2 id="%F0%9F%8E%93-todays-homework-%DA%AF%DA%BE%D8%B1-%DA%A9%D8%A7-%DA%A9%D8%A7%D9%85">🎓 Today's Homework (گھر کا کام)</h2>
+<p><strong>Required (لازمی):</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox55"><label for="checkbox55">Complete the Utility Functions Library</label></li>
+<li><input type="checkbox" id="checkbox56"><label for="checkbox56">Test all 4 functions with different inputs</label></li>
+<li><input type="checkbox" id="checkbox57"><label for="checkbox57">Explain to a family member: &quot;What is a function?&quot; in Urdu</label></li>
+</ul>
+<p><strong>Optional (اختیاری):</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox58"><label for="checkbox58">Try the extension challenges</label></li>
+<li><input type="checkbox" id="checkbox59"><label for="checkbox59">Create 3 more utility functions of your choice</label></li>
+<li><input type="checkbox" id="checkbox60"><label for="checkbox60">Build a &quot;Calculator&quot; with add, subtract, multiply, divide functions</label></li>
+<li><input type="checkbox" id="checkbox61"><label for="checkbox61">Make a function that takes array and returns average</label></li>
+</ul>
+<p><strong>For Tomorrow:</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox62"><label for="checkbox62">Think about: &quot;How would I store related functions and data together?&quot;</label></li>
+<li><input type="checkbox" id="checkbox63"><label for="checkbox63">This will help with tomorrow's topic: Arrays &amp; Array Methods!</label></li>
+</ul>
+<hr>
+<h2 id="%F0%9F%92%AD-daily-reflection-%D8%B1%D9%88%D8%B2%D8%A7%D9%86%DB%81-%DA%A9%DB%8C-%D8%B3%D9%88%DA%86">💭 Daily Reflection (روزانہ کی سوچ)</h2>
+<p><strong>آج میں نے کیا سیکھا (What I Learned Today):</strong></p>
+<hr>
+<hr>
+<p><strong>مشکل کیا لگا (What I Found Difficult):</strong></p>
+<hr>
+<hr>
+<p><strong>مزید کیا سیکھنا ہے (What I Want to Explore More):</strong></p>
+<hr>
+<hr>
+<p><strong>My Confidence Level (1-10): ________</strong></p>
+<hr>
+<h2 id="%F0%9F%94%84-tomorrows-preview">🔄 Tomorrow's Preview</h2>
+<p>Tomorrow we'll learn about <strong>Arrays &amp; Array Methods</strong> where you'll build a <strong>Daraz Product Manager</strong>!</p>
+<p>You'll learn how to:</p>
+<ul>
+<li>Store multiple items in one variable (arrays)</li>
+<li>Loop through arrays</li>
+<li>Use powerful array methods (map, filter, forEach)</li>
+<li>Manipulate lists of data</li>
+</ul>
+<p><strong>Get Ready By:</strong></p>
+<ul>
+<li><input type="checkbox" id="checkbox64"><label for="checkbox64">Making sure all your functions work</label></li>
+<li><input type="checkbox" id="checkbox65"><label for="checkbox65">Thinking: How would you store 100 student names?</label></li>
+<li><input type="checkbox" id="checkbox66"><label for="checkbox66">Arrays are the answer!</label></li>
+</ul>
+<hr>
+<h2 id="%F0%9F%93%9A-resources-%D8%A7%DA%AF%D8%B1-%D9%85%D8%B2%DB%8C%D8%AF-%D9%BE%DA%91%DA%BE%D9%86%D8%A7-%DB%81%D9%88">📚 Resources (اگر مزید پڑھنا ہو)</h2>
+<p><strong>Free Resources (3G-Friendly):</strong></p>
+<p>📖 <strong>MDN - Functions</strong></p>
+<ul>
+<li>Link: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions</li>
+<li>Best for: Deep understanding of functions</li>
+</ul>
+<p>🎥 <strong>JavaScript Functions in Urdu</strong></p>
+<ul>
+<li>Search: &quot;JavaScript functions Urdu tutorial parameters return&quot;</li>
+<li>Best for: Visual learners</li>
+</ul>
+<p>💻 <strong>Practice Functions</strong></p>
+<ul>
+<li>Create utility functions for daily tasks</li>
+<li>Practice with parameters and return</li>
+</ul>
+<hr>
+<p><strong>CodeSensei's Tip of the Day:</strong> 💡</p>
+<p><em>&quot;Functions are like recipes - write once, use many times. The best functions do ONE thing well. Don't try to make a function that does everything! Make small, focused functions, then combine them. That's how professional developers code.&quot;</em></p>
+<p><em>&quot;فنکشنز ریسیپیوں کی طرح ہیں - ایک بار لکھو، بار بار استعمال کرو۔ بہترین فنکشن ایک کام اچھی طرح کرتا ہے۔&quot;</em></p>
+<hr>
+<h2 id="%F0%9F%91%A5-team-activity-tomorrows-standup">👥 Team Activity (Tomorrow's Standup)</h2>
+<p><strong>Tomorrow at 7:00 PM, be ready to share:</strong></p>
+<ol>
+<li>Your favorite utility function you created</li>
+<li>One thing you learned about return statements</li>
+<li>Explain scope using Urdu analogy</li>
+<li>One question about functions</li>
+</ol>
+<hr>
+<p><em>کوڈ سیکھنا ایک سفر ہے، منزل نہیں۔ ہر دن ایک قدم آگے۔</em></p>
+<p><em>&quot;Learning to code is a journey, not a destination. One step forward every day.&quot;</em></p>
+<p><strong>Day 4 Complete! See you tomorrow for Arrays! 🚀</strong></p>
+<p>اللہ حافظ! Tomorrow we learn to handle lists of data! 📊</p>
+
+</body>
+</html>

@@ -437,28 +437,28 @@ Complete markdown lesson following the template above, ready to save as .md file
 
 ## NOW GENERATE THE LESSON
 
-Day 3: Loops & Iteration
-لوپس اور دہرانا
+Day 4: Functions & Scope
+فنکشنز اور سکوپ
 🎯 Today's Goals
-Understand for loops completely
-Use while and do-while loops
-Know when to use break and continue
-Avoid infinite loops
+Declare and invoke functions
+Understand parameters and arguments
+Master return statements
+Understand function vs block scope
 📚 Core Concepts
-for loop: Repeat code a specific number of times — like saying Bismillah 100 times
-while loop: Keep going until condition is false — like waiting for your turn in queue
-break & continue: break exits the loop, continue skips to next iteration
+Function Declaration: function naam() { code } — like creating a recipe you can use again and again
+Parameters vs Arguments: Parameters are placeholders, arguments are actual values you pass in
+Return Statement: Sends a value back — without return, function gives undefined
 💻 Hands-On Practice
-Loop from 1 to 100, print only even numbers. Loop backwards from 10 to 1. Create multiplication table.
+Create functions: greetUser(name), calculateArea(width, height), isEven(number), convertToUpperCase(text).
 🚀 Challenge Project
-Project: Cricket Score Counter
-Simulate a cricket innings and calculate total runs.
+Project: Utility Functions Library
+Build a collection of reusable helper functions.
 Requirements:
-Loop through 6 overs (each over has 6 balls)
-Randomly generate runs for each ball (0-6)
-Track boundaries (4s and 6s)
-Calculate total runs, strike rate
-Stop if team gets all out (simulate with random wickets)
-Bonus Challenge: Add commentary for each ball (e.g., 'SIX! What a shot!')
+convertCurrency(amount, fromCurrency, toCurrency)
+calculateDiscount(price, discountPercent)
+formatPhoneNumber(digits) — format as +92-XXX-XXXXXXX
+validateEmail(email) — basic check for @ and .
+Each function must return value and handle invalid inputs
+Bonus Challenge: Add main menu function that lets user choose which utility to use
 ✅ Daily Progress
 Quiz Score: _____/5 | Challenge: ☐ Complete | Commits: _____ | Hours: _____
