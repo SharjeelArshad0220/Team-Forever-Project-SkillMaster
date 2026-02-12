@@ -1,8 +1,7 @@
 function checkBiryani(riceCooked, masalaBalanced, chickenTender, saltOk) {
     
     if (riceCooked && masalaBalanced && chickenTender && saltOk) {
-        console.log(" 
-            Biryani Perfect Hai!");
+        console.log(" Biryani Perfect Hai!");
     } else {
         console.log(" Biryani Fail Hai!");
     }
