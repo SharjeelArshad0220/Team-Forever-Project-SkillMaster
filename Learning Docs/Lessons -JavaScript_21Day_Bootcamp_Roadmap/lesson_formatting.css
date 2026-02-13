@@ -16,6 +16,9 @@ code {
     padding: 0.2em 0.4em;
     border-radius: 3px;
     border: 1px solid #eaecf0;
+    filter: contrast(1.3);
+    /* text-shadow: #2d2d2d; */
+    color: #2e2e2e;
 }
 pre {
     background-color: #f8f9fa;
@@ -47,5 +50,5 @@ pre code {
 }
 /* Style specific syntax tokens if needed */
 .hljs-keyword { color: #ff79c6; }
-.hljs-string { color: #f1fa8c; }
-.hljs-comment { color: #6272a4; }
+.hljs-string { color: #506600; }
+.hljs-comment { color: #3f6efd; }
