@@ -437,28 +437,31 @@ Complete markdown lesson following the template above, ready to save as .md file
 
 ## NOW GENERATE THE LESSON
 
-Day 4: Functions & Scope
-فنکشنز اور سکوپ
+Day 6: Arrays & Array Methods
+صفیں اور طریقے
+"Arrays are like aloo paratha layers — stacked data you can access by position"
 🎯 Today's Goals
-Declare and invoke functions
-Understand parameters and arguments
-Master return statements
-Understand function vs block scope
+☐	Create and manipulate arrays
+☐	Master push, pop, shift, unshift
+☐	Use forEach, map, filter
+☐	Understand array indexing (zero-based)
 📚 Core Concepts
-Function Declaration: function naam() { code } — like creating a recipe you can use again and again
-Parameters vs Arguments: Parameters are placeholders, arguments are actual values you pass in
-Return Statement: Sends a value back — without return, function gives undefined
+•	Array Basics: const arr = [1, 2, 3] — ordered list of values, accessed by index
+•	Common Methods: push (add to end), pop (remove from end), includes(), length
+•	Higher Order Methods: forEach (loop), map (transform), filter (select)
 💻 Hands-On Practice
-Create functions: greetUser(name), calculateArea(width, height), isEven(number), convertToUpperCase(text).
+Create array of Pakistani cities. Add/remove cities. Loop through and print each. Filter cities starting with 'L'.
 🚀 Challenge Project
-Project: Utility Functions Library
-Build a collection of reusable helper functions.
+Project: Daraz Product Manager
+Build a simple product inventory system.
 Requirements:
-convertCurrency(amount, fromCurrency, toCurrency)
-calculateDiscount(price, discountPercent)
-formatPhoneNumber(digits) — format as +92-XXX-XXXXXXX
-validateEmail(email) — basic check for @ and .
-Each function must return value and handle invalid inputs
-Bonus Challenge: Add main menu function that lets user choose which utility to use
+•	Store products as array of objects: [{name, price, stock, category}]
+•	Add new products using push
+•	Remove out-of-stock items using filter
+•	Calculate total inventory value
+•	Find most expensive product
+•	Display products by category
+Bonus Challenge: Add search function to find products by name
 ✅ Daily Progress
 Quiz Score: _____/5 | Challenge: ☐ Complete | Commits: _____ | Hours: _____
+
