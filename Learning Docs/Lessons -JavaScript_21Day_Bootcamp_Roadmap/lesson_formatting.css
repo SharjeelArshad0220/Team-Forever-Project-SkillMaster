@@ -1,54 +1,323 @@
-/* custom-style.css - Example 1: Clean & Professional */
+/* ===== CODESENSEI PUBLISHER THEME ===== */
+/* Cambridge/O'Reilly inspired - Academic, Authoritative, Timeless */
+
+/* ----- Font Import - Academic Standard ----- */
+@import url('https://fonts.googleapis.com/css2?family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600;7..72,700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* ===== PAGE LAYOUT - BOOK-LIKE ===== */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    line-height: 1.6;
-    color: #333;
-    max-width: 210mm; /* Controls text width on the page */
+    font-family: 'Literata', 'Georgia', 'Times New Roman', 'Palatino', serif;
+    line-height: 1.8;
+    color: #2d2d2d;
+    background: white;
+    max-width: 170mm;  /* Narrower = more readable like a book */
     margin: 0 auto;
+    font-size: 11.5pt;
+    font-weight: 400;
+    text-rendering: optimizeLegibility;
+    hyphens: auto;
 }
-h1, h2, h3 {
-    color: #2c3e50;
-    border-bottom: 2px solid #3498db;
+
+/* ===== HEADERS - SCHOLARLY, SUBTLE ===== */
+h1, h2, h3, h4 {
+    font-family: 'Literata', 'Georgia', serif;
+    font-weight: 600;
+    color: #1a1a1a;
+    letter-spacing: -0.01em;
+    margin-top: 2em;
+    margin-bottom: 0.8em;
+    page-break-after: avoid;
+}
+
+h1 {
+    font-size: 22pt;
+    font-weight: 700;
+    border-bottom: 1px solid #c4c4c4;
+    padding-bottom: 0.4em;
+    margin-bottom: 1.2em;
+    margin-top: 1em;
+    letter-spacing: -0.02em;
+}
+
+h2 {
+    font-size: 16pt;
+    font-weight: 600;
+    color: #2e2e2e;
+    border-bottom: 1px solid #e0e0e0;
     padding-bottom: 0.3em;
 }
+
+h3 {
+    font-size: 13pt;
+    font-weight: 600;
+    color: #3a3a3a;
+    font-style: normal;
+}
+
+h4 {
+    font-size: 11.5pt;
+    font-weight: 600;
+    color: #4a4a4a;
+    font-variant: small-caps;
+    letter-spacing: 0.5px;
+}
+
+/* ===== CODE BLOCKS - PRINT-FRIENDLY GRAYSCALE ===== */
+pre {
+    background: #faf9f7;  /* Warm paper white, not cold gray */
+    color: #2d2d2d;
+    padding: 1.2em 1.5em;
+    border-radius: 2px;
+    overflow-x: auto;
+    font-family: 'JetBrains Mono', 'Courier New', 'Menlo', monospace;
+    font-size: 9.5pt;
+    line-height: 1.7;
+    border: 1px solid #e8e6e3;
+    margin: 1.8em 0;
+    box-shadow: none;  /* No shadows - print style */
+    border-left: 4px solid #7a7a7a;
+}
+
 code {
-    background-color: #f8f9fa;
-    padding: 0.2em 0.4em;
-    border-radius: 3px;
-    border: 1px solid #eaecf0;
-    filter: contrast(1.3);
-    /* text-shadow: #2d2d2d; */
-    color: #2e2e2e;
+    font-family: 'JetBrains Mono', 'Courier New', 'Menlo', monospace;
+    font-size: 10pt;
+    background: #f2f0ed;
+    color: #2a2a2a;
+    padding: 0.15em 0.4em;
+    border-radius: 2px;
+    font-weight: 500;
+    border: 1px solid #dad7d0;
 }
-pre {
-    background-color: #f8f9fa;
-    padding: 1em;
-    border-radius: 5px;
-    border-left: 4px solid #3498db;
-    overflow-x: auto;
-}
-a {
-    color: #2980b9;
-    text-decoration: none;
-}
-a:hover {
-    text-decoration: underline;
-}
-/* custom-style.css - Example 2: Dark Code Blocks */
-pre {
-    background-color: #2d2d2d;
-    color: #f8f8f2;
-    padding: 1em;
-    border-radius: 5px;
-    overflow-x: auto;
-}
+
 pre code {
-    background-color: transparent; /* Inherits from pre */
+    background: transparent;
+    color: #2d2d2d;
     padding: 0;
     border: none;
-    color: inherit;
+    font-size: 9.5pt;
+    font-weight: 400;
 }
-/* Style specific syntax tokens if needed */
-.hljs-keyword { color: #ff79c6; }
-.hljs-string { color: #506600; }
-.hljs-comment { color: #3f6efd; }
+
+/* ----- Syntax Highlighting - MUTED, PRINT-FRIENDLY (No neon) ----- */
+.hljs-keyword, .hljs-tag {
+    color: #7a3e1d;  /* Burnt umber - keywords */
+    font-weight: 600;
+}
+
+.hljs-string, .hljs-doctag {
+    color: #1e6a3c;  /* Forest green - strings */
+}
+
+.hljs-comment {
+    color: #6e6e6e;  /* Medium gray - comments */
+    font-style: italic;
+}
+
+.hljs-function, .hljs-title {
+    color: #1f4f7a;  /* Deep blue - functions */
+    font-weight: 600;
+}
+
+.hljs-number {
+    color: #8a6e2b;  /* Olive - numbers */
+}
+
+.hljs-params {
+    color: #3a3a3a;  /* Dark gray - parameters */
+}
+
+.hljs-literal {
+    color: #8b4c6e;  /* Mauve - true/false/null */
+}
+
+/* ===== LINKS - SUBTLE, BOOK-STYLE ===== */
+a {
+    color: #5e5e5e;
+    text-decoration: none;
+    border-bottom: 1px solid #c4c4c4;
+}
+
+a:hover {
+    border-bottom-color: #5e5e5e;
+}
+
+/* ===== TABLES - ACADEMIC, CLEAN ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2em 0;
+    font-size: 10pt;
+    font-family: 'Literata', 'Georgia', serif;
+}
+
+th {
+    background: #f2f0ed;
+    color: #1a1a1a;
+    font-weight: 600;
+    padding: 0.7em 0.8em;
+    border: 1px solid #dad7d0;
+    text-align: left;
+    font-size: 10.5pt;
+}
+
+td {
+    padding: 0.6em 0.8em;
+    border: 1px solid #dad7d0;
+    background: white;
+}
+
+tr:nth-child(even) td {
+    background: #fcfbf9;
+}
+
+/* ===== BLOCKQUOTES - SCHOLARLY NOTES ===== */
+blockquote {
+    border-left: 3px solid #b3b3b3;
+    background: #faf9f7;
+    padding: 1em 1.8em;
+    margin: 1.8em 0;
+    border-radius: 0;
+    color: #4a4a4a;
+    font-style: normal;
+    font-size: 10.5pt;
+}
+
+blockquote p {
+    margin: 0.5em 0;
+}
+
+/* ===== LISTS - PROPER BOOK SPACING ===== */
+ul, ol {
+    margin: 1.2em 0;
+    padding-left: 2em;
+}
+
+li {
+    margin: 0.5em 0;
+    line-height: 1.7;
+}
+
+/* ===== HORIZONTAL RULES - SUBTLE ===== */
+hr {
+    border: none;
+    border-top: 1px solid #e0e0e0;
+    margin: 2.5em 0;
+}
+
+/* ===== IMAGES - PRINT-READY ===== */
+img {
+    max-width: 100%;
+    border: 1px solid #e0e0e0;
+    padding: 4px;
+    background: white;
+    margin: 1.5em 0;
+}
+
+/* ===== FIGURES & CAPTIONS ===== */
+figcaption, .caption {
+    font-size: 9.5pt;
+    color: #6e6e6e;
+    text-align: center;
+    margin-top: 0.5em;
+    font-style: italic;
+}
+
+/* ===== PAGE NUMBERS & FOOTNOTES ===== */
+@page {
+    margin: 2.5cm 2cm;
+    @bottom-center {
+        content: counter(page);
+        font-family: 'Literata', serif;
+        font-size: 9pt;
+        color: #6e6e6e;
+    }
+}
+
+/* ===== FOOTNOTES ===== */
+.footnote {
+    font-size: 9pt;
+    color: #6e6e6e;
+    border-top: 1px solid #e0e0e0;
+    margin-top: 2em;
+    padding-top: 1em;
+}
+
+/* ===== URDU TEXT - PUBLISHER QUALITY ===== */
+.urdu, [lang="ur"] {
+    font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', 'AlQalam', serif;
+    font-size: 12pt;
+    line-height: 2.2;
+    color: #1a1a1a;
+    font-weight: 400;
+    direction: rtl;
+    text-align: right;
+}
+
+/* ===== CALLS TO ACTION - SUBTLE ===== */
+.note, .tip, .warning, .caution {
+    padding: 1em 1.5em;
+    margin: 1.8em 0;
+    border-left: 3px solid #7a7a7a;
+    background: #faf9f7;
+    font-size: 10.5pt;
+    page-break-inside: avoid;
+}
+
+.note strong, .tip strong, .warning strong {
+    font-weight: 700;
+    color: #1a1a1a;
+}
+
+/* ===== DEFINITION LISTS - FOR TERMS ===== */
+dt {
+    font-weight: 600;
+    margin-top: 1em;
+    color: #1a1a1a;
+}
+
+dd {
+    margin-left: 1.5em;
+    color: #4a4a4a;
+}
+
+/* ===== SMALL CAPS FOR DATES/REFERENCES ===== */
+.smallcaps {
+    font-variant: small-caps;
+    letter-spacing: 0.5px;
+}
+
+/* ===== CODE LINE NUMBERS (OPTIONAL) ===== */
+.line-number {
+    color: #9e9e9e;
+    margin-right: 1em;
+    user-select: none;
+}
+
+/* ===== PRINT OPTIMIZATIONS ===== */
+@media print {
+    body {
+        font-size: 11pt;
+        line-height: 1.7;
+        color: black;
+    }
+    
+    pre, code {
+        background: #faf9f7;
+        border: 1px solid #e0e0e0;
+        box-shadow: none;
+    }
+    
+    a {
+        color: black;
+        border-bottom: 1px solid #c4c4c4;
+        text-decoration: none;
+    }
+    
+    h1, h2, h3, h4 {
+        page-break-after: avoid;
+    }
+    
+    pre, blockquote, table {
+        page-break-inside: avoid;
+    }
+}
