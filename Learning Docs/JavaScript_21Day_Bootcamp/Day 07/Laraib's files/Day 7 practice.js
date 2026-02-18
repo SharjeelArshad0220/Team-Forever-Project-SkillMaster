@@ -73,7 +73,11 @@ return total / this.reviews.length;
 console.log(product.getAverageRating());
 
 
-
+/*
+***************************
+Laraib tumny na yeh exercises complete kr k har kisi ki separate file  mn rakha kor practice files walay folder mn.
+***************************
+*/
 console.log("Exercise 3");
 
 const restaurant = {
