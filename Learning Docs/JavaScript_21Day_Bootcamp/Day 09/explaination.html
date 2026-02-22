@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>events</title>
+    <style>
+.box { width: 200px; height: 200px; background: rgb(252, 77, 77); 
+display: flex; align-items: center; justify-content: center;margin: 20px; transition: all 0.3s ease; cursor: pointer; }
+.active { background: rgb(2, 133, 2); transform: scale(1.1); }
+</style>
+</head>
+<div id="interactive-box" class="box">
+Hover and Click Me!
+</div>
+<form action="" id="form">
+    <input type="text" id="text-input" placeholder="Type here...">
+    <input type="submit" value="Submit" id="submit">
+</form>
+<p id="char-count">Characters: 0</p>
+
+<script>
+const box = document.querySelector("#interactive-box");
+const counter = document.querySelector("#char-count");
+const form = document.querySelector("#form");
+// TODO: Add mouseenter event - add 'active' class to box
+box.addEventListener("mouseenter", function() {
+box.classList.add("active");
+});
+// TODO: Add mouseleave event - remove 'active' class
+box.addEventListener("mouseleave", function() {
+box.classList.remove("active");
+});
+// TODO: Add click event - show alert
+box.addEventListener("click", function() {
+alert("Box clicked!");
+});
+// TODO: Add input event - update character count
+form.addEventListener("input", function(event) {
+    if (event.target.matches('#text-input')) {
+        counter.textContent = "Characters: " + event.target.value.length;
+    }
+    if (event.target.matches('#submit')) {
+        event.preventDefault();
+        alert("Form submitted!");
+    }
+});
+
+</script>
+
+<body>
+    
+</body>
+</html>

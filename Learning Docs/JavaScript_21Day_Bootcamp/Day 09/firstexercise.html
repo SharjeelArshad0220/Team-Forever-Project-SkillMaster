@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise no.1</title>
+    <style>
+        body { transition: background-color 0.3s; padding: 20px; }
+.color-btn { padding: 10px 20px; margin: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Color Changer</h1>
+<button class="color-btn" data-color="#ff6b6b">Red</button>
+<button class="color-btn" data-color="#4ecdc4">Teal</button>
+<button class="color-btn" data-color="#ffe66d">Yellow</button>
+<button class="color-btn" data-color="#95e1d3">Mint</button>
+<script>
+    const buttons = document.querySelectorAll('.color-btn');
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        document.body.style.backgroundColor = button.getAttribute('data-color');
+    });
+});
+</script>
+</body>
+</html>

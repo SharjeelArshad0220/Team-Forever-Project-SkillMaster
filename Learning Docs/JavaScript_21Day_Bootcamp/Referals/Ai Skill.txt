@@ -1,0 +1,16 @@
+1. Prompt Engineering (The Logic) - "Kese aur Kya?"
+AI ko instruction dena aik fun hai. Aapko seekhna hoga ke System Prompts kaise likhte hain.
+Study: "Role-based Prompting" (e.g., You are a Senior MERN Developer).
+Resource: Learn Prompting (Official Guide) par ja kar "Act as" patterns parhein.
+2. Tool Definition / Function Calling (The Powers) - "Kaunse Tools?"
+Skill sirf text nahi hoti, AI ko batana parta hai ke woh computer ke saath kya kar sakta hai.
+Study: JSON Schema. AI ko batane ke liye ke createFile ya runTerminalCommand ka tool kaise kaam karta hai, aapko JSON seekhna hoga.
+Kaam: OpenAI Function Calling Documentation ko basics ke liye dekhein.
+3. MCP (Model Context Protocol) - "Sab se Modern"
+Yeh aaj kal ka sab se Hot Topic hai jo Cursor aur Claude use kar rahe hain.
+Study: MCP aik aisa standard hai jo AI ko "Skills" (Google Search, Database access, Local File editing) daita hai.
+Resource: Model Context Protocol (MCP) Introduction ko parhein. Yeh aapke FYP ko "Next Level" le jaye ga.
+4. Agentic Workflows - "Kaam ka Flow"
+AI kab aur kyun kisi tool ko use karega? Isay "Planning" kehte hain.
+Study: ReAct Pattern (Reason + Act). AI pehle sochta hai (Reason), phir tool use karta hai (Act).
+Resource: LangChain Agents Guide se workflow samajhein.
