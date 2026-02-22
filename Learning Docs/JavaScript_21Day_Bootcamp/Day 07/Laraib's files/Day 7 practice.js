@@ -75,7 +75,7 @@ console.log(product.getAverageRating());
 
 /*
 ***************************
-Laraib tumny na yeh exercises complete kr k har kisi ki separate file  mn rakha kor practice files walay folder mn.
+Laraib tumny na yeh exercises complete kr k har kisi ki separate file  mn rakha kro practice files walay folder mn.
 ***************************
 */
 console.log("Exercise 3");
